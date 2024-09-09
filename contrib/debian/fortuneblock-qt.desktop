@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Fortuneblock Core
+Comment=Fortuneblock P2P Cryptocurrency
+Comment[de]=Verbinde mit dem Fortuneblock peer-to-peer Netzwerk
+Comment[fr]=Fortuneblock, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Fortuneblock, eşten eşe kriptografik sanal para birimi
+Exec=fortuneblock-qt %u
+Terminal=false
+Type=Application
+Icon=fortuneblock128
+MimeType=x-scheme-handler/fortuneblock;
+Categories=Office;Finance;

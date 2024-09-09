@@ -1,0 +1,52 @@
+Source: fortuneblock
+Section: utils
+Priority: optional
+Maintainer: Holger Schinzel <holger@fortuneblock.fun>
+Uploaders: Holger Schinzel <holger@fortuneblock.fun>
+Build-Depends: debhelper,
+ devscripts,
+ automake,
+ libtool,
+ bash-completion,
+ libdb4.8++-dev,
+ libssl-dev,
+ pkg-config,
+ libevent-dev,
+ libboost-system1.48-dev | libboost-system-dev (>> 1.47),
+ libboost-filesystem1.48-dev | libboost-filesystem-dev (>> 1.47),
+ libboost-thread1.48-dev | libboost-thread-dev (>> 1.47),
+ libboost-test1.48-dev | libboost-test-dev (>> 1.47),
+ libminiupnpc8-dev | libminiupnpc-dev,
+ qttools5-dev-tools, qttools5-dev,
+ libqrencode-dev,
+ python,
+ libzmq3-dev
+Standards-Version: 3.9.2
+Homepage: https://fortuneblock.fun/
+Vcs-Git: git://github.com/ftbfun/fortuneblock.git
+Vcs-Browser: https://github.com/ftbfun/fortuneblock
+
+Package: fortuneblockd
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer network based digital currency - daemon
+ Fortuneblock is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Fortuneblock uses peer-to-peer
+ technology to operate with no central authority: managing transactions
+ and issuing money are carried out collectively by the network. Fortuneblock Core
+ is the name of the open source software which enables the use of this currency.
+ .
+ This package provides the daemon, fortuneblockd, and the CLI tool
+ fortuneblock-cli to interact with the daemon.
+
+Package: fortuneblock-qt
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer network based digital currency - Qt GUI
+ Fortuneblock is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Fortuneblock uses peer-to-peer
+ technology to operate with no central authority: managing transactions
+ and issuing money are carried out collectively by the network. Fortuneblock Core
+ is the name of the open source software which enables the use of this currency.
+ .
+ This package provides Fortuneblock-Qt, a GUI for Fortuneblock based on Qt.

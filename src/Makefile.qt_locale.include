@@ -1,0 +1,22 @@
+QT_TS = \
+  qt/locale/fortuneblock_ar.ts \
+  qt/locale/fortuneblock_bg.ts \
+  qt/locale/fortuneblock_de.ts \
+  qt/locale/fortuneblock_en.ts \
+  qt/locale/fortuneblock_es.ts \
+  qt/locale/fortuneblock_fi.ts \
+  qt/locale/fortuneblock_fr.ts \
+  qt/locale/fortuneblock_it.ts \
+  qt/locale/fortuneblock_ja.ts \
+  qt/locale/fortuneblock_ko.ts \
+  qt/locale/fortuneblock_nl.ts \
+  qt/locale/fortuneblock_pl.ts \
+  qt/locale/fortuneblock_pt.ts \
+  qt/locale/fortuneblock_ro.ts \
+  qt/locale/fortuneblock_ru.ts \
+  qt/locale/fortuneblock_sk.ts \
+  qt/locale/fortuneblock_th.ts \
+  qt/locale/fortuneblock_tr.ts \
+  qt/locale/fortuneblock_vi.ts \
+  qt/locale/fortuneblock_zh_CN.ts \
+  qt/locale/fortuneblock_zh_TW.ts

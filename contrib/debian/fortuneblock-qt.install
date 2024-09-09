@@ -1,0 +1,6 @@
+usr/local/bin/fortuneblock-qt usr/bin
+share/pixmaps/fortuneblock32.xpm usr/share/pixmaps
+share/pixmaps/fortuneblock16.xpm usr/share/pixmaps
+share/pixmaps/fortuneblock128.png usr/share/pixmaps
+debian/fortuneblock-qt.desktop usr/share/applications
+debian/fortuneblock-qt.protocol usr/share/kde4/services/
