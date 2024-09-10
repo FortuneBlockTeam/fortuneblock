@@ -164,10 +164,10 @@ private:
     QToolBar *appToolBar = nullptr;
     QToolButton *overviewButton = nullptr;
     QToolButton *sendCoinsButton = nullptr;
-    QToolButton *sendAssetsButton  = nullptr;
-    QToolButton *createAssetsButton  = nullptr;
-    QToolButton *updateAssetsButton  = nullptr;
-    QToolButton *myAssetsButton  = nullptr;
+    //QToolButton *sendAssetsButton  = nullptr;
+    //QToolButton *createAssetsButton  = nullptr;
+    //QToolButton *updateAssetsButton  = nullptr;
+    //QToolButton *myAssetsButton  = nullptr;
     QToolButton *coinJoinCoinsButton = nullptr;
     QToolButton *receiveCoinsButton = nullptr;
     QToolButton *historyButton = nullptr;
@@ -175,9 +175,9 @@ private:
     QAction *appToolBarLogoAction = nullptr;
     QAction *quitAction = nullptr;
     QAction *sendCoinsMenuAction = nullptr;
-    QAction *sendAssetsMenuAction = nullptr;
-    QAction *createAssetsMenuAction = nullptr;
-    QAction *updateAssetsMenuAction = nullptr;
+    //QAction *sendAssetsMenuAction = nullptr;
+    //QAction *createAssetsMenuAction = nullptr;
+    //QAction *updateAssetsMenuAction = nullptr;
     QAction *coinJoinCoinsMenuAction = nullptr;
     QAction *usedSendingAddressesAction = nullptr;
     QAction *usedReceivingAddressesAction = nullptr;

@@ -103,10 +103,10 @@ BitcoinGUI::BitcoinGUI(interfaces::Node &node, const NetworkStyle *networkStyle,
         smartnodeButton(0),
         quitAction(0),
         sendCoinsButton(0),
-        sendAssetsButton(0),
+        //sendAssetsButton(0),
         coinJoinCoinsButton(0),
         sendCoinsMenuAction(0),
-        sendAssetsMenuAction(0),
+        //sendAssetsMenuAction(0),
         coinJoinCoinsMenuAction(0),
         usedSendingAddressesAction(0),
         usedReceivingAddressesAction(0),
@@ -767,7 +767,7 @@ void BitcoinGUI::createToolBars() {
             connect(smartnodeButton, &QToolButton::clicked, this, &BitcoinGUI::gotoSmartnodePage);
             smartnodeButton->setEnabled(true);
         }
-
+        /*
         myAssetsButton = new QToolButton(this);
         myAssetsButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
         myAssetsButton->setIcon(GUIUtil::getIcon("menu_assets", GUIUtil::ThemedColor::PRIMARY));
@@ -795,13 +795,13 @@ void BitcoinGUI::createToolBars() {
         updateAssetsButton->setText(updateAssetsMenuAction->text());
         updateAssetsButton->setStatusTip(updateAssetsMenuAction->statusTip());
         tabGroup->addButton(updateAssetsButton);
-
+        */
         connect(overviewButton, &QToolButton::clicked, this, &BitcoinGUI::gotoOverviewPage);
         connect(sendCoinsButton, &QToolButton::clicked, [this]{ gotoSendCoinsPage(); });
-        connect(sendAssetsButton, &QToolButton::clicked, [this]{ gotoSendAssetsPage(); });
-        connect(createAssetsButton, &QToolButton::clicked, [this]{ gotoCreateAssetsPage(); });
-        connect(updateAssetsButton, &QToolButton::clicked, [this]{ gotoUpdateAssetsPage(); });
-        connect(myAssetsButton, &QToolButton::clicked, [this]{ gotoMyAssetsPage(); });
+        //connect(sendAssetsButton, &QToolButton::clicked, [this]{ gotoSendAssetsPage(); });
+        //connect(createAssetsButton, &QToolButton::clicked, [this]{ gotoCreateAssetsPage(); });
+        //connect(updateAssetsButton, &QToolButton::clicked, [this]{ gotoUpdateAssetsPage(); });
+        //connect(myAssetsButton, &QToolButton::clicked, [this]{ gotoMyAssetsPage(); });
         connect(coinJoinCoinsButton, &QToolButton::clicked, [this]{ gotoCoinJoinCoinsPage(); });
         connect(receiveCoinsButton, &QToolButton::clicked, this, &BitcoinGUI::gotoReceiveCoinsPage);
         connect(historyButton, &QToolButton::clicked, this, &BitcoinGUI::gotoHistoryPage);
@@ -1044,7 +1044,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled) {
         coinJoinCoinsButton->setEnabled(enabled && clientModel->coinJoinOptions().isEnabled());
         receiveCoinsButton->setEnabled(enabled);
         historyButton->setEnabled(enabled);
-        sendAssetsButton->setEnabled(enabled);
+        //sendAssetsButton->setEnabled(enabled);
     }
 #endif // ENABLE_WALLET
 
@@ -1054,7 +1054,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled) {
 #else
     coinJoinCoinsMenuAction->setEnabled(enabled);
 #endif // ENABLE_WALLET
-    sendAssetsMenuAction->setEnabled(enabled);
+    //sendAssetsMenuAction->setEnabled(enabled);
     receiveCoinsMenuAction->setEnabled(enabled);
 
     encryptWalletAction->setEnabled(enabled);
@@ -1090,7 +1090,7 @@ void BitcoinGUI::createIconMenu(QMenu *pmenu) {
     if (enableWallet) {
         pmenu->addAction(sendCoinsMenuAction);
         pmenu->addAction(coinJoinCoinsMenuAction);
-        pmenu->addAction(sendAssetsMenuAction);
+        //pmenu->addAction(sendAssetsMenuAction);
         pmenu->addAction(receiveCoinsMenuAction);
         pmenu->addSeparator();
         pmenu->addAction(signMessageAction);
