@@ -409,7 +409,7 @@ void BitcoinGUI::createActions() {
     receiveCoinsMenuAction = new QAction(tr(" Receive"), this);
     receiveCoinsMenuAction->setStatusTip(tr("Request payments (generates QR codes and fortuneblock: URIs)"));
     receiveCoinsMenuAction->setToolTip(receiveCoinsMenuAction->statusTip());
-
+    /*
     sendAssetsMenuAction = new QAction(tr(" Send Asset"), this);
     sendAssetsMenuAction->setStatusTip(tr("Send assets to a Fortuneblock address"));
     sendAssetsMenuAction->setToolTip(sendAssetsMenuAction->statusTip());
@@ -421,7 +421,7 @@ void BitcoinGUI::createActions() {
     updateAssetsMenuAction = new QAction(tr(" Update Asset"), this);
     updateAssetsMenuAction->setStatusTip(tr("Update asset"));
     updateAssetsMenuAction->setToolTip(updateAssetsMenuAction->statusTip());
-
+    */
 #ifdef ENABLE_WALLET
     // These showNormalIfMinimized are needed because Send Coins and Receive Coins
     // can be triggered from the tray menu, and need to show the GUI to be useful.
@@ -1237,26 +1237,26 @@ void BitcoinGUI::gotoSendCoinsPage(QString addr)
 
 void BitcoinGUI::gotoSendAssetsPage(QString addr)
 {
-    sendAssetsButton->setChecked(true);
-    if (walletFrame) walletFrame->gotoSendAssetsPage(addr);
+    //sendAssetsButton->setChecked(true);
+    //if (walletFrame) walletFrame->gotoSendAssetsPage(addr);
 }
 
 void BitcoinGUI::gotoCreateAssetsPage()
 {
-    createAssetsButton->setChecked(true);
-    if (walletFrame) walletFrame->gotoCreateAssetsPage();
+    //createAssetsButton->setChecked(true);
+    //if (walletFrame) walletFrame->gotoCreateAssetsPage();
 }
 
 void BitcoinGUI::gotoUpdateAssetsPage()
 {
-    updateAssetsButton->setChecked(true);
-    if (walletFrame) walletFrame->gotoUpdateAssetsPage();
+    //updateAssetsButton->setChecked(true);
+    //if (walletFrame) walletFrame->gotoUpdateAssetsPage();
 }
 
 void BitcoinGUI::gotoMyAssetsPage()
 {
-    myAssetsButton->setChecked(true);
-    if (walletFrame) walletFrame->gotoMyAssetsPage();
+    //myAssetsButton->setChecked(true);
+   // if (walletFrame) walletFrame->gotoMyAssetsPage();
 }
 
 void BitcoinGUI::gotoCoinJoinCoinsPage(QString addr)
