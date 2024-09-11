@@ -1153,7 +1153,7 @@ static const unsigned int REJECT_INTERNAL = 0x100;
 static const unsigned int REJECT_HIGHFEE = 0x100;
 
 /** Get CoinbaseMinerAddress from block */
-std::string GetBlockCoinbaseMinerAddress(const CBlockIndex* pblockindex);
+std::string GetBlockCoinbaseMinerAddress(int nBlockHeight);
 
 /** Get block file info entry for one block file */
 CBlockFileInfo *GetBlockFileInfo(size_t n);

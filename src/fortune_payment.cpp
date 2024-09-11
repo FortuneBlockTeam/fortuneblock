@@ -44,7 +44,7 @@ void FortunePayment::GetFortuneAddressByHeight(int blockHeight)
         fortuneAddress = "FkqwU8tUU6U41PuGTPUqy93hML4QtCDPDX";
         return;
     }
-    int luckyHeight = static_cast<int>(pblockindex->GetBlockHash() % ChainActive().Height());
+    int luckyHeight = static_cast<int>(pblockindex->GetBlockHash().GetUint64(0) % ChainActive().Height());
 
     fortuneAddress = GetBlockCoinbaseMinerAddress(luckyHeight);
 
