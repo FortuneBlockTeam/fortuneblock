@@ -17,4 +17,4 @@ std::string FormatStateMessage(const CValidationState &state) {
                      state.GetRejectCode());
 }
 
-const std::string strMessageMagic = "DarkCoin Signed Message:\n";
+const std::string strMessageMagic = "FortuneBlock Signed Message:\n";
