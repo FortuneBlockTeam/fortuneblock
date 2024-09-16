@@ -18,4 +18,3 @@ std::string FormatStateMessage(const CValidationState &state) {
 }
 
 const std::string strMessageMagic = "FortuneBlock Signed Message:\n";
-const std::string strDefaultFortuneAddress = "FkqwU8tUU6U41PuGTPUqy93hML4QtCDPDX";
