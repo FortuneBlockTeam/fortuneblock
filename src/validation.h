@@ -164,6 +164,9 @@ static const int DEFAULT_STOPATHEIGHT = 0;
 
 extern const std::string strMessageMagic;
 
+/* Default FortuneAddress*/
+extern const std::string strDefaultFortuneAddress;
+
 struct BlockHasher {
     size_t operator()(const uint256 &hash) const { return hash.GetCheapHash(); }
 };

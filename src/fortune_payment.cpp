@@ -34,14 +34,14 @@ void FortunePayment::GetFortuneAddressByHeight(int blockHeight)
     
     if (blockHeight <= 0 || blockHeight > ChainActive().Height()) {
         LogPrintf("Invalid block height: %d\n", blockHeight);
-        fortuneAddress = "FkqwU8tUU6U41PuGTPUqy93hML4QtCDPDX";
+        fortuneAddress = DEFAULT_FORTUNE_ADDRESS;
         return;
     }
 
     CBlockIndex* pblockindex = ChainActive()[blockHeight];
     if (!pblockindex) {
         LogPrintf("Block index not found for height: %d\n", blockHeight);
-        fortuneAddress = "FkqwU8tUU6U41PuGTPUqy93hML4QtCDPDX";
+        fortuneAddress = DEFAULT_FORTUNE_ADDRESS;
         return;
     }
     int luckyHeight = static_cast<int>(pblockindex->GetBlockHash().GetUint64(0) % ChainActive().Height());

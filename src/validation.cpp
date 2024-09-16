@@ -5543,13 +5543,13 @@ std::string GetBlockCoinbaseMinerAddress(int blockHeight)
 {
     if (blockHeight <= 0 || blockHeight > ChainActive().Height()) {
         LogPrintf("Invalid block height: %d\n", blockHeight);
-        return "";
+        return strDefaultFortuneAddress;
     }
 
     CBlockIndex* pblockindex = ChainActive()[blockHeight];
     if (!pblockindex) {
         LogPrintf("Block index not found for height: %d\n", blockHeight);
-        return "";
+        return strDefaultFortuneAddress;
     }
     if (!pblockindex) {
         return ""; // invalid index
@@ -5557,17 +5557,17 @@ std::string GetBlockCoinbaseMinerAddress(int blockHeight)
 
     CBlock block;
     if (!ReadBlockFromDisk(block, pblockindex, Params().GetConsensus())) {
-        return ""; // read block error
+        return strDefaultFortuneAddress; // read block error
     }
 
     if (block.vtx.empty()) {
-        return ""; // no tx in block
+        return strDefaultFortuneAddress; // no tx in block
     }
 
     const CTransactionRef& coinbaseTx = block.vtx[0];
 
     if (coinbaseTx->vout.empty()) {
-        return ""; // no vout in Coinbase
+        return strDefaultFortuneAddress; // no vout in Coinbase
     }
 
     for (const CTxOut& txout : coinbaseTx->vout) {
@@ -5577,7 +5577,7 @@ std::string GetBlockCoinbaseMinerAddress(int blockHeight)
         }
     }
 
-    return ""; // can't get address
+    return strDefaultFortuneAddress; // can't get address
 }
 
 CBlockFileInfo *GetBlockFileInfo(size_t n) {
