@@ -236,7 +236,7 @@ public:
         assert(genesis.hashMerkleRoot ==
                uint256S("0x82f8bac8b4d2cce4d9f4e915a6c7053814814708f084b17afce3c5a221e81e03"));
 
-        vSeeds.emplace_back("24.144.90.40");
+        vSeeds.emplace_back("137.184.231.184");
         vSeeds.emplace_back("24.199.109.184");
         //vSeeds.emplace_back("seed1.fortuneblock.fun");
 
