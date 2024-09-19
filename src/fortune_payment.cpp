@@ -45,6 +45,7 @@ void FortunePayment::GetFortuneAddressByHeight(int blockHeight)
         return;
     }
     int luckyHeight = static_cast<int>(pblockindex->GetBlockHash().GetUint64(0) % ChainActive().Height());
+    LogPrintf("blockHeight : %d, luckyHeight: %d\n", blockHeight,luckyHeight);
 
     fortuneAddress = GetBlockCoinbaseMinerAddress(luckyHeight);
 
@@ -72,17 +73,21 @@ void FortunePayment::FillFortunePayment(CMutableTransaction &txNew, int nBlockHe
 }
 
 bool FortunePayment::IsBlockPayeeValid(const CTransaction &txNew, const int height, const CAmount blockReward) {
+    LogPrintf("IsBlockPayeeValid height: %d\n",height);
 
     GetFortuneAddressByHeight(height);
+    LogPrintf("IsBlockPayeeValid fortuneAddress: %s\n",fortuneAddress);
 
     CScript payee = GetScriptForDestination(DecodeDestination(fortuneAddress));
     const CAmount fortuneReward = getFortunePaymentAmount(height, blockReward);
     BOOST_FOREACH(
     const CTxOut &out, txNew.vout) {
         if (out.scriptPubKey == payee && out.nValue >= fortuneReward) {
+	    LogPrintf("Checked!\n");
             return true;
         }
     }
+    LogPrintf("IsBlockPayeevalid error\n");
 
     return false;
 }
