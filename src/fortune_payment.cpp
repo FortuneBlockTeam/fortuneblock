@@ -33,7 +33,7 @@ void FortunePayment::GetFortuneAddressByHeight(int blockHeight)
 {
     
     if (blockHeight <= 0 || blockHeight > ChainActive().Height()) {
-        LogPrintf("Invalid block height: %d\n", blockHeight);
+        //LogPrintf("Invalid block height: %d\n", blockHeight);
         fortuneAddress = DEFAULT_FORTUNE_ADDRESS;
         return;
     }
