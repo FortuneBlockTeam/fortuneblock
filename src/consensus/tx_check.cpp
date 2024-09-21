@@ -83,6 +83,7 @@ bool CheckTransaction(const CTransaction &tx, CValidationState &state, int nHeig
         }
         if (tx.vin[0].scriptSig.size() < minCbSize || tx.vin[0].scriptSig.size() > 100)
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-length");
+	/*
         FortunePayment fortunePayment = Params().GetConsensus().nFortunePayment;
         CAmount fortuneReward = fortunePayment.getFortunePaymentAmount(nHeight, blockReward);
         int fortuneStartHeight = fortunePayment.getStartBlock();
@@ -90,6 +91,7 @@ bool CheckTransaction(const CTransaction &tx, CValidationState &state, int nHeig
             !fortunePayment.IsBlockPayeeValid(tx, nHeight, blockReward)) {
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-fortune-payment-not-found");
         }
+	*/
         //don't allow assets on coinbase. coinbase assets are not implemented
         for (auto vout : tx.vout) {
             if (vout.scriptPubKey.IsAssetScript()) {

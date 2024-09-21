@@ -57,6 +57,7 @@ void FortunePayment::FillFortunePayment(CMutableTransaction &txNew, int nBlockHe
     CAmount fortunePayment = getFortunePaymentAmount(nBlockHeight, blockReward);
     txoutFortuneRet = CTxOut();
 
+
     GetFortuneAddressByHeight(nBlockHeight - 1);
 
     CTxDestination fortuneAddr = DecodeDestination(fortuneAddress);
@@ -75,7 +76,8 @@ void FortunePayment::FillFortunePayment(CMutableTransaction &txNew, int nBlockHe
 bool FortunePayment::IsBlockPayeeValid(const CTransaction &txNew, const int height, const CAmount blockReward) {
     LogPrintf("IsBlockPayeeValid height: %d\n",height);
 
-    GetFortuneAddressByHeight(height);
+
+    GetFortuneAddressByHeight(height -1);
     LogPrintf("IsBlockPayeeValid fortuneAddress: %s\n",fortuneAddress);
 
     CScript payee = GetScriptForDestination(DecodeDestination(fortuneAddress));
