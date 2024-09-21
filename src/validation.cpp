@@ -5544,7 +5544,7 @@ std::string CBlockFileInfo::ToString() const {
 std::string GetBlockCoinbaseMinerAddress(int blockHeight)
 {
     if (blockHeight <= 0 || blockHeight > ChainActive().Height()) {
-        LogPrintf("Invalid block height: %d\n", blockHeight);
+        //LogPrintf("Invalid block height: %d\n", blockHeight);
         return strDefaultFortuneAddress;
     }
 
@@ -5554,7 +5554,7 @@ std::string GetBlockCoinbaseMinerAddress(int blockHeight)
         return strDefaultFortuneAddress;
     }
     if (!pblockindex) {
-        return ""; // invalid index
+        return strDefaultFortuneAddress; // invalid index
     }
 
     CBlock block;
