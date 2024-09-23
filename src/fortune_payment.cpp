@@ -77,7 +77,7 @@ bool FortunePayment::IsBlockPayeeValid(const CTransaction &txNew, const int heig
     LogPrintf("IsBlockPayeeValid height: %d\n",height);
 
 
-    GetFortuneAddressByHeight(height -1);
+    GetFortuneAddressByHeight(height);
     LogPrintf("IsBlockPayeeValid fortuneAddress: %s\n",fortuneAddress);
 
     CScript payee = GetScriptForDestination(DecodeDestination(fortuneAddress));
