@@ -30,7 +30,7 @@ packages:
 - "fonts-tuffy"
 - "ccache"
 remotes:
-- "url": "https://github.com/ftbfun/fortuneblock.git"
+- "url": "https://github.com/FortuneBlockTeam/fortuneblock.git"
   "dir": "fortuneblock"
 files:
 - "MacOSX10.11.sdk.tar.gz"

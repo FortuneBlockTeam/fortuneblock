@@ -23,8 +23,8 @@ Build-Depends: debhelper,
  libzmq3-dev
 Standards-Version: 3.9.2
 Homepage: https://fortuneblock.fun/
-Vcs-Git: git://github.com/ftbfun/fortuneblock.git
-Vcs-Browser: https://github.com/ftbfun/fortuneblock
+Vcs-Git: git://github.com/FortuneBlockTeam/fortuneblock.git
+Vcs-Browser: https://github.com/FortuneBlockTeam/fortuneblock
 
 Package: fortuneblockd
 Architecture: any

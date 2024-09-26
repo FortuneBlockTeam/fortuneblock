@@ -4,7 +4,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 export LC_ALL=C
-if ! [[ "$2" =~ ^(git@)?(www.)?github.com(:|/)ftbfun/fortuneblock(.git)?$ ]]; then
+if ! [[ "$2" =~ ^(git@)?(www.)?github.com(:|/)FortuneBlockTeam/fortuneblock(.git)?$ ]]; then
     exit 0
 fi
 

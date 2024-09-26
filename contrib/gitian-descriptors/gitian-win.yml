@@ -25,7 +25,7 @@ packages:
 - "rename"
 - "ccache"
 remotes:
-- "url": "https://github.com/ftbfun/fortuneblock.git"
+- "url": "https://github.com/FortuneBlockTeam/fortuneblock.git"
   "dir": "fortuneblock"
 files: []
 script: |
