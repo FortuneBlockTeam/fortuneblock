@@ -980,7 +980,7 @@ void SetupServerArgs() {
 }
 
 std::string LicenseInfo() {
-    const std::string URL_SOURCE_CODE = "<https://github.com/ftbfun/fortuneblock>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/FortuneBlockTeam/fortuneblock>";
     const std::string URL_WEBSITE = "<https://fortuneblock.fun>";
 
     return CopyrightHolders(_("Copyright (C)"), 2024, COPYRIGHT_YEAR) + "\n" +
@@ -2126,7 +2126,7 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
     // ********************************************************* Step 7c: load block chain
 
     fReindex = gArgs.GetBoolArg("-reindex", false);
-    bool fReindexChainState = gArgs.GetBoolArg("-reindex-chainstate", true);
+    bool fReindexChainState = gArgs.GetBoolArg("-reindex-chainstate", false);
 
     // cache size calculations
     int64_t nTotalCache = (gArgs.GetArg("-dbcache", nDefaultDbCache) << 20);

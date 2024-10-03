@@ -7,7 +7,7 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/ftbfun/fortuneblock-detached-sigs.git"
+- "url": "https://github.com/FortuneBlockTeam/fortuneblock-detached-sigs.git"
   "dir": "signature"
 files:
 - "fortuneblockcore-osx-unsigned.tar.gz"
