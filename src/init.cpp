@@ -2126,7 +2126,7 @@ bool AppInitMain(const util::Ref &context, NodeContext &node, interfaces::BlockA
     // ********************************************************* Step 7c: load block chain
 
     fReindex = gArgs.GetBoolArg("-reindex", false);
-    bool fReindexChainState = gArgs.GetBoolArg("-reindex-chainstate", true);
+    bool fReindexChainState = gArgs.GetBoolArg("-reindex-chainstate", false);
 
     // cache size calculations
     int64_t nTotalCache = (gArgs.GetArg("-dbcache", nDefaultDbCache) << 20);

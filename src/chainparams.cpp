@@ -187,13 +187,12 @@ public:
         consensus.BIPCSVEnabled = true;
         consensus.BIP147Enabled = true;
         consensus.BIP34Enabled = true;
-        consensus.BIP65Enabled = true; // 00000000000076d8fcea02ec0963de4abfd01e771fec0863f960c2c64fe6f357
-        consensus.BIP66Enabled = true; // 00000000000b1fa2dfa312863570e13fae9ca7b5566cb27e55422620b469aefa
+        consensus.BIP65Enabled = true; 
+        consensus.BIP66Enabled = true; 
         consensus.DIP0001Enabled = true;
         consensus.DIP0003Enabled = true;
         consensus.DIP0008Enabled = true;
-        // consensus.DIP0003EnforcementHeight = 1047200;
-        consensus.powLimit = uint256S(
+         consensus.powLimit = uint256S(
                 "00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
         consensus.nPowTargetTimespan = 24 * 60 * 60; // Fortuneblock: 1 day
         consensus.nPowTargetSpacing = 2 * 60; // Fortuneblock: 2 minutes
