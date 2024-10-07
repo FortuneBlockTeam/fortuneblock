@@ -1,4 +1,4 @@
-/* Copyright (c) 2020 The Fortuneblock Core developers
+/* 
  * Distributed under the MIT software license, see the accompanying
  * file COPYING or http://www.opensource.org/licenses/mit-license.php.
  *
@@ -7,6 +7,7 @@
  *  Created on: May 11, 2018
  *      Author: tri
  */
+// Copyright (c) 2024 The FortuneBlock developers
 
 #ifndef FORTUNEBLOCK_SELECTION_H_
 #define FORTUNEBLOCK_SELECTION_H_
@@ -36,7 +37,6 @@ extern "C" {
 #include <cryptonote/hash-ops.h>
 }
 
-extern std::vector <std::vector<int>> GR_GROUP;
 
 void coreHash(const void *toHash, uint512 *hash, int lenToHash, int hashSelection);
 
@@ -57,12 +57,8 @@ public:
                 "Cubehash",   //7
                 "Shavite",    //8
                 "Simd",       //9
-                "Echo",       //A
-                "Jamsi",      //B
-                "Fugue",      //C
-                "Shabal",     //D
-                "Whirlpool",  //E
-                "Sha512"     //F
+                "Echo"        //A
+
         };
         this->cnVariantMap = {
                 "CNDark",        //0

@@ -1,6 +1,7 @@
 // Copyright (c) 2016 The Bitcoin Core developers
 // Copyright (c) 2018-2020 The Dash Core developers
 // Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2024 The FortuneBlock developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -109,7 +110,7 @@ static void HASH_1MB_GR(benchmark::Bench &bench) {
     uint256 hash;
     std::vector <uint8_t> in(BUFFER_SIZE, 0);
     bench.batch(in.size()).unit("byte").minEpochIterations(10).run([&] {
-        hash = HashGR(in.begin(), in.end(), uint256());
+        hash = HashFortune(in.begin(), in.end(), uint256());
     });
 }
 
@@ -117,7 +118,7 @@ static void HASH_GR_0032b_single(benchmark::Bench &bench) {
     uint256 hash;
     std::vector <uint8_t> in(32, 0);
     bench.minEpochIterations(10000).run([&] {
-        hash = HashGR(in.begin(), in.end(), uint256());
+        hash = HashFortune(in.begin(), in.end(), uint256());
     });
 }
 
@@ -125,7 +126,7 @@ static void HASH_GR_0080b_single(benchmark::Bench &bench) {
     uint256 hash;
     std::vector <uint8_t> in(80, 0);
     bench.minEpochIterations(10000).run([&] {
-        hash = HashGR(in.begin(), in.end(), uint256());
+        hash = HashFortune(in.begin(), in.end(), uint256());
     });
 }
 
@@ -133,7 +134,7 @@ static void HASH_GR_0128b_single(benchmark::Bench &bench) {
     uint256 hash;
     std::vector <uint8_t> in(128, 0);
     bench.minEpochIterations(10000).run([&] {
-        hash = HashGR(in.begin(), in.end(), uint256());
+        hash = HashFortune(in.begin(), in.end(), uint256());
     });
 }
 
@@ -141,7 +142,7 @@ static void HASH_GR_0512b_single(benchmark::Bench &bench) {
     uint256 hash;
     std::vector <uint8_t> in(512, 0);
     bench.minEpochIterations(10000).run([&] {
-        hash = HashGR(in.begin(), in.end(), uint256());
+        hash = HashFortune(in.begin(), in.end(), uint256());
     });
 }
 
@@ -149,7 +150,7 @@ static void HASH_GR_1024b_single(benchmark::Bench &bench) {
     uint256 hash;
     std::vector <uint8_t> in(1024, 0);
     bench.minEpochIterations(10000).run([&] {
-        hash = HashGR(in.begin(), in.end(), uint256());
+        hash = HashFortune(in.begin(), in.end(), uint256());
     });
 }
 
@@ -157,7 +158,7 @@ static void HASH_GR_2048b_single(benchmark::Bench &bench) {
     uint256 hash;
     std::vector <uint8_t> in(2048, 0);
     bench.minEpochIterations(10000).run([&] {
-        hash = HashGR(in.begin(), in.end(), uint256());
+        hash = HashFortune(in.begin(), in.end(), uint256());
     });
 }
 

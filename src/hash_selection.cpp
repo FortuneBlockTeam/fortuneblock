@@ -1,32 +1,17 @@
-/* Copyright (c) 2020 The Fortuneblock Core developers
+/* 
  * Distributed under the MIT software license, see the accompanying
  * file COPYING or http://www.opensource.org/licenses/mit-license.php.
  *
  *  Created on: May 11, 2018
  *      Author: tri
  */
+// Copyright (c) 2024 The FortuneBlock developers
 
 #include <hash_selection.h>
 #include <cryptonote/slow-hash.h>
+#include <sstream>
 
-std::vector <std::vector<int>> GR_GROUP = {
-        {0,  1,  2,  3,  4},
-        {5,  6,  7,  8,  9},
-        {10, 11, 12, 13, 14}
-};
 
-//int HashSelection::getHashSelection(int index) {
-//	assert(index >= 0);
-//	assert(index < size);
-//	const int startNibblesHash = 64 - size;
-//	int hashSelection = PrevBlockHash.GetNibble(startNibblesHash + index);
-//	hashSelection = hashSelection % size;
-//	return(hashSelection);
-//}
-
-//int HashSelection::getGroupHashSelection(uint256 blockHash) {
-//	return blockHash.GetNibble(60);
-//}
 
 std::vector<int> HashSelection::getRandomIndexes(std::vector<int> indexes) {
     std::vector<int> groupIndexes;
@@ -63,35 +48,44 @@ std::vector<int> HashSelection::getRandomIndexes(std::vector<int> indexes) {
     return groupIndexes;
 }
 
-std::string HashSelection::getHashSelectionString() {
-    std::string selectedAlgoes;
-    int i = 0;
-    for (; i < 5; i++) {
-        //int hashSelection = getHashSelection(i);
-        int selectedAlgoIndex = this->algoIndexes[i];
-        std::string selectedAlgo = this->algoMap[selectedAlgoIndex];
-        selectedAlgoes.append(selectedAlgo);
-    }
+
+std::string HashSelection::getHashSelectionString()
+{
+    std::ostringstream selectedAlgoes;
+
+    // Helper function to append selected algoes
+    auto appendAlgoes = [&](int start, int end) {
+        for (int i = start; i < end; ++i) {
+            int selectedAlgoIndex = this->algoIndexes[i];
+            std::string selectedAlgo = this->algoMap[selectedAlgoIndex];
+            selectedAlgoes << selectedAlgo;
+        }
+    };
+
+    // First 5 algoes
+    appendAlgoes(0, 5);
+
+    // First CN variant
     std::string selectedCN_1 = this->cnVariantMap[this->cnIndexes[0]];
-    selectedAlgoes.append(selectedCN_1);
-    for (; i < 10; i++) {
-        //int hashSelection = getHashSelection(i);
-        int selectedAlgoIndex = this->algoIndexes[i];
-        std::string selectedAlgo = this->algoMap[selectedAlgoIndex];
-        selectedAlgoes.append(selectedAlgo);
-    }
+    selectedAlgoes << selectedCN_1;
+
+    // Next 5 algoes
+    appendAlgoes(5, 10);
+
+    // Second CN variant
     std::string selectedCN_2 = this->cnVariantMap[this->cnIndexes[1]];
-    selectedAlgoes.append(selectedCN_2);
-    for (; i < 15; i++) {
-        //int hashSelection = getHashSelection(i);
-        int selectedAlgoIndex = this->algoIndexes[i];
-        std::string selectedAlgo = this->algoMap[selectedAlgoIndex];
-        selectedAlgoes.append(selectedAlgo);
-    }
+    selectedAlgoes << selectedCN_2;
+
+    // Final algo
+    appendAlgoes(10, 11);
+
+    // Third CN variant
     std::string selectedCN_3 = this->cnVariantMap[this->cnIndexes[2]];
-    selectedAlgoes.append(selectedCN_3);
-    return selectedAlgoes;
+    selectedAlgoes << selectedCN_3;
+
+    return selectedAlgoes.str();
 }
+
 
 void coreHash(const void *toHash, uint512 *hash, int lenToHash, int hashSelection) {
     sph_blake512_context ctx_blake;      //0
@@ -105,11 +99,7 @@ void coreHash(const void *toHash, uint512 *hash, int lenToHash, int hashSelectio
     sph_shavite512_context ctx_shavite;    //8
     sph_simd512_context ctx_simd;       //9
     sph_echo512_context ctx_echo;       //A
-    sph_hamsi512_context ctx_hamsi;      //B
-    sph_fugue512_context ctx_fugue;      //C
-    sph_shabal512_context ctx_shabal;     //D
-    sph_whirlpool_context ctx_whirlpool;  //E
-    sph_sha512_context ctx_sha512;     //F
+
     switch (hashSelection) {
         case 0:
             sph_blake512_init(&ctx_blake);
@@ -166,31 +156,7 @@ void coreHash(const void *toHash, uint512 *hash, int lenToHash, int hashSelectio
             sph_echo512(&ctx_echo, toHash, lenToHash);
             sph_echo512_close(&ctx_echo, static_cast<void *>(hash));
             break;
-        case 11:
-            sph_hamsi512_init(&ctx_hamsi);
-            sph_hamsi512(&ctx_hamsi, toHash, lenToHash);
-            sph_hamsi512_close(&ctx_hamsi, static_cast<void *>(hash));
-            break;
-        case 12:
-            sph_fugue512_init(&ctx_fugue);
-            sph_fugue512(&ctx_fugue, toHash, lenToHash);
-            sph_fugue512_close(&ctx_fugue, static_cast<void *>(hash));
-            break;
-        case 13:
-            sph_shabal512_init(&ctx_shabal);
-            sph_shabal512(&ctx_shabal, toHash, lenToHash);
-            sph_shabal512_close(&ctx_shabal, static_cast<void *>(hash));
-            break;
-        case 14:
-            sph_whirlpool_init(&ctx_whirlpool);
-            sph_whirlpool(&ctx_whirlpool, toHash, lenToHash);
-            sph_whirlpool_close(&ctx_whirlpool, static_cast<void *>(hash));
-            break;
-        case 15:
-            sph_sha512_init(&ctx_sha512);
-            sph_sha512(&ctx_sha512, toHash, lenToHash);
-            sph_sha512_close(&ctx_sha512, static_cast<void *>(hash));
-            break;
+
     }
 }
 

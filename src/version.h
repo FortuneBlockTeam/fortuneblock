@@ -12,47 +12,47 @@
  */
 
 
-static const int PROTOCOL_VERSION = 70221;
+static const int PROTOCOL_VERSION = 70222;
 
 //! initial proto version, to be increased after version/verack negotiation
 static const int INIT_PROTO_VERSION = 209;
 
 //! disconnect from peers older than this proto version
-static const int OLD_MIN_PEER_PROTO_VERSION = 70221;
+static const int OLD_MIN_PEER_PROTO_VERSION = 70222;
 
-static const int MIN_PEER_PROTO_VERSION = 70221;
+static const int MIN_PEER_PROTO_VERSION = 70222;
 
 //! minimum proto version of smartnode to accept in DKGs
-static const int OLD_MIN_SMARTNODE_PROTO_VERSION = 70221;
-static const int MIN_SMARTNODE_PROTO_VERSION = 70221;
+static const int OLD_MIN_SMARTNODE_PROTO_VERSION = 70222;
+static const int MIN_SMARTNODE_PROTO_VERSION = 70222;
 
 //! minimum proto version for governance sync and messages
-static const int MIN_GOVERNANCE_PEER_PROTO_VERSION = 70221;
+static const int MIN_GOVERNANCE_PEER_PROTO_VERSION = 70222;
 
 //! minimum proto version to broadcast governance messages from banned smartnodes
-static const int GOVERNANCE_POSE_BANNED_VOTES_VERSION = 70221;
+static const int GOVERNANCE_POSE_BANNED_VOTES_VERSION = 70222;
 
 //! nTime field added to CAddress, starting with this version;
 //! if possible, avoid requesting addresses nodes older than this
-static const int CADDR_TIME_VERSION = 70221;
+static const int CADDR_TIME_VERSION = 70222;
 
 //! introduction of LLMQs
-static const int LLMQS_PROTO_VERSION = 70221;
+static const int LLMQS_PROTO_VERSION = 70222;
 
 //! introduction of SENDDSQUEUE
 //! TODO we can remove this in 0.15.0.0
-static const int SENDDSQUEUE_PROTO_VERSION = 70221;
+static const int SENDDSQUEUE_PROTO_VERSION = 70222;
 
 //! minimum peer version accepted by mixing pool
-static const int MIN_COINJOIN_PEER_PROTO_VERSION = 70221;
+static const int MIN_COINJOIN_PEER_PROTO_VERSION = 70222;
 
 //! protocol version is included in MNAUTH starting with this version
-static const int MNAUTH_NODE_VER_VERSION = 70221;
+static const int MNAUTH_NODE_VER_VERSION = 70222;
 
 //! introduction of QGETDATA/QDATA messages
-static const int LLMQ_DATA_MESSAGES_VERSION = 70221;
+static const int LLMQ_DATA_MESSAGES_VERSION = 70222;
 
 //! introduction of instant send deterministic lock (ISDLOCK)
-static const int ISDLOCK_PROTO_VERSION = 70221;
+static const int ISDLOCK_PROTO_VERSION = 70222;
 
 #endif // BITCOIN_VERSION_H

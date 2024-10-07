@@ -1,6 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2024 The FortuneBlock developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -22,7 +23,7 @@ uint256 CBlockHeader::GetHash() const {
 }
 
 uint256 CBlockHeader::ComputeHash() const {
-    return HashGR(BEGIN(nVersion), END(nNonce), hashPrevBlock);
+    return HashFortune(BEGIN(nVersion), END(nNonce), hashPrevBlock);
 }
 
 uint256 CBlockHeader::GetPOWHash(bool readCache) const {
