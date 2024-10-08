@@ -169,18 +169,16 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = CBaseChainParams::MAIN;
-        consensus.nSubsidyHalvingInterval = 210240; // Note: actual number of blocks per calendar year with DGW v3 is ~200700 (for example 449750 - 249050)
+        consensus.nSubsidyHalvingInterval = 262800; 
         consensus.nSmartnodePaymentsStartBlock = 5761; //
-        consensus.nSmartnodePaymentsIncreaseBlock = 158000; // actual historical value
-        consensus.nSmartnodePaymentsIncreasePeriod = 576 * 30; // 17280 - actual historical value
         consensus.nInstantSendConfirmationsRequired = 6;
         consensus.nInstantSendKeepLock = 24;
         consensus.nBudgetPaymentsStartBlock = INT_MAX; // actual historical value
-        consensus.nBudgetPaymentsCycleBlocks = 16616; // ~(60*24*30)/2.6, actual number of blocks per month is 200700 / 12 = 16725
+        consensus.nBudgetPaymentsCycleBlocks = 21600; 
         consensus.nBudgetPaymentsWindowBlocks = 100;
-        consensus.nSuperblockStartBlock = INT_MAX; // The block at which 12.1 goes live (end of final 12.0 budget cycle)
-        consensus.nSuperblockStartHash = uint256S("0000000000020cb27c7ef164d21003d5d20cdca2f54dd9a9ca6d45f4d47f8aa3");
-        consensus.nSuperblockCycle = 16616; // ~(60*24*30)/2.6, actual number of blocks per month is 200700 / 12 = 16725
+        consensus.nSuperblockStartBlock = INT_MAX; 
+        consensus.nSuperblockStartHash = uint256S();
+        consensus.nSuperblockCycle = 21600; 
         consensus.nGovernanceMinQuorum = 10;
         consensus.nGovernanceFilterElements = 20000;
         consensus.nSmartnodeMinimumConfirmations = 15;
@@ -200,8 +198,6 @@ public:
         consensus.fPowNoRetargeting = false;
         consensus.nPowDGWHeight = 60;
         consensus.DGWBlocksAvg = 60;
-        consensus.nRuleChangeActivationThreshold = 1916; // 95% of 2016
-        consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.smartnodePaymentFixedBlock = 6800;
         consensus.nFutureForkBlock = 420420;
 
