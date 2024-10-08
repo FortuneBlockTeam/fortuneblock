@@ -626,7 +626,7 @@ void static FortuneblockMiner(const CChainParams& chainparams, NodeContext& node
                 return;
             }
             CBlock *pblock = &pblocktemplate->block;
-            HashSelection hashSelection(pblock->hashPrevBlock, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14},
+            HashSelection hashSelection(pblock->hashPrevBlock, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
                                         {0, 1, 2, 3, 4, 5});
             alsoHashString.clear();
             alsoHashString.append(hashSelection.getHashSelectionString());
