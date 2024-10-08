@@ -169,15 +169,15 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = CBaseChainParams::MAIN;
-        consensus.nSubsidyHalvingInterval = 262800; 
-        consensus.nSmartnodePaymentsStartBlock = 5761; //
+        consensus.nSubsidyHalvingInterval = 260000; 
+        consensus.nSmartnodePaymentsStartBlock = 5000; //
         consensus.nInstantSendConfirmationsRequired = 6;
         consensus.nInstantSendKeepLock = 24;
         consensus.nBudgetPaymentsStartBlock = INT_MAX; // actual historical value
         consensus.nBudgetPaymentsCycleBlocks = 21600; 
         consensus.nBudgetPaymentsWindowBlocks = 100;
         consensus.nSuperblockStartBlock = INT_MAX; 
-        consensus.nSuperblockStartHash = uint256S();
+        consensus.nSuperblockStartHash = uint256S("");
         consensus.nSuperblockCycle = 21600; 
         consensus.nGovernanceMinQuorum = 10;
         consensus.nGovernanceFilterElements = 20000;
@@ -224,11 +224,11 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1724986340, 65, 0x20001fff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1724986340, 4755, 0x20001fff, 4, 5000 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0x79e345a6ff46af6fbc1f0b71433adc57f59739ab36bfad8b889468aaefe6df38"));
+               uint256S("0x797e33f0bf25e510d9405f06f008e6bfe9c8b5b6a6ae2328f48c7f1bce98bbb4"));
         assert(genesis.hashMerkleRoot ==
                uint256S("0x82f8bac8b4d2cce4d9f4e915a6c7053814814708f084b17afce3c5a221e81e03"));
 
@@ -256,14 +256,9 @@ public:
         std::vector <FortuneRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% lucky reward forever
         consensus.nFortunePayment = FortunePayment(rewardStructures, 0);
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{88720,   600000 * COIN},
-                 {132720,  800000 * COIN},
-                 {176720,  1000000 * COIN},
-                 {220720,  1250000 * COIN},
-                 {264720,  1500000 * COIN},
-                 {INT_MAX, 1800000 * COIN}
+                {{INT_MAX, 600000 * COIN}
                 },
-                {{5761,    0},
+                {{5000,    0},
                  {INT_MAX, 20}}
         );
         //FutureRewardShare defaultShare(0.8,0.2,0.0);
