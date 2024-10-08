@@ -1088,43 +1088,13 @@ NOTE:   unlike bitcoin we are using PREVIOUS block height here,
 */
 CAmount
 GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params &consensusParams, bool fSuperblockPartOnly) {
-    // if (Params().NetworkIDString() == "main") {
-    //     std::cout << "This is Testnet only build" << endl;
-    //     exit(1);
-    // }
     double nSubsidy = 5000;      // (declaring the reward variable and its original/default amount)
-    const short owlings = 21262; // amount of blocks between 2 owlings
-    int multiplier;              // integer number of owlings
-    int tempHeight;              // number of blocks since last anchor
-    if (nPrevHeight < 500) {
-        nSubsidy = Params().NetworkIDString() == CBaseChainParams::TESTNET ? 20000 : 1;
-    } else if ((nPrevHeight > 553531) && (nPrevHeight < 2105657)) {
-        tempHeight = nPrevHeight - 553532;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier * 10 + 10);
-    } else if ((nPrevHeight >= 2105657) && (nPrevHeight < 5273695)) {
-        tempHeight = nPrevHeight - 2105657;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier * 20 + 750);
-    } else if ((nPrevHeight >= 5273695) && (nPrevHeight < 7378633)) {
-        tempHeight = nPrevHeight - 5273695;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier * 10 + 3720);
-    } else if ((nPrevHeight >= 7378633) && (nPrevHeight < 8399209)) {
-        tempHeight = nPrevHeight - 7378633;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier * 5 + 4705);
-    } else if ((nPrevHeight >= 8399209) && (nPrevHeight < 14735285)) {
-        nSubsidy = 55;
-    } else if ((nPrevHeight >= 14735285) && (nPrevHeight < 15798385)) {
-        tempHeight = nPrevHeight - 14735285;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier + 4946);
-    } else if ((nPrevHeight >= 15798385) && (nPrevHeight < 25844304)) {
-        nSubsidy = 5;
-    } else if (nPrevHeight >= 25844304) {
-        nSubsidy = 0.001;
-    }
+    int halvings = nPrevHeight / consensusParams.nSubsidyHalvingInterval;
+    if (nPrevHeight < 720) {  //first day no instant mine
+        nSubsidy = 1;
+    } else  {      
+        nSubsidy = nSubsidy / pow(2 , halvings);  
+    } 
     return nSubsidy * COIN;
 }
 
