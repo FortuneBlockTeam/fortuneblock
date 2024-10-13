@@ -224,13 +224,13 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1724986340, 4755, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1724986340, 625, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0x797e33f0bf25e510d9405f06f008e6bfe9c8b5b6a6ae2328f48c7f1bce98bbb4"));
+               uint256S("0xc3f31ae629c37b43da0b23a4373cf9704d5082ae2deb5d39d88e4c85f43a929d"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x82f8bac8b4d2cce4d9f4e915a6c7053814814708f084b17afce3c5a221e81e03"));
+               uint256S("0x5eef5dfd14465af6b2f68328f97bc961a9894d4f4c21803d04497a3804f8c74d"));
 
         vSeeds.emplace_back("137.184.231.184");
         vSeeds.emplace_back("24.199.109.184");
@@ -256,7 +256,7 @@ public:
         std::vector <FortuneRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% lucky reward forever
         consensus.nFortunePayment = FortunePayment(rewardStructures, 0);
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 600000 * COIN}
+                {{INT_MAX, 60000 * COIN}
                 },
                 {{5000,    0},
                  {INT_MAX, 20}}
@@ -363,13 +363,13 @@ public:
         pchMessageStart[3] = 0x66; //b
         nDefaultPort = 20333;
         nPruneAfterHeight = 1000;
-        genesis = CreateGenesisBlock(1724986340, 4755, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1724986340, 625, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0x797e33f0bf25e510d9405f06f008e6bfe9c8b5b6a6ae2328f48c7f1bce98bbb4"));
+               uint256S("0xc3f31ae629c37b43da0b23a4373cf9704d5082ae2deb5d39d88e4c85f43a929d"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x82f8bac8b4d2cce4d9f4e915a6c7053814814708f084b17afce3c5a221e81e03"));
+               uint256S("0x5eef5dfd14465af6b2f68328f97bc961a9894d4f4c21803d04497a3804f8c74d"));
 
  
         vFixedSeeds.clear();
@@ -518,13 +518,13 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        genesis = CreateGenesisBlock(1724986340, 4755, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1724986340, 625, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0x797e33f0bf25e510d9405f06f008e6bfe9c8b5b6a6ae2328f48c7f1bce98bbb4"));
+               uint256S("0xc3f31ae629c37b43da0b23a4373cf9704d5082ae2deb5d39d88e4c85f43a929d"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x82f8bac8b4d2cce4d9f4e915a6c7053814814708f084b17afce3c5a221e81e03"));
+               uint256S("0x5eef5dfd14465af6b2f68328f97bc961a9894d4f4c21803d04497a3804f8c74d"));
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
@@ -696,13 +696,13 @@ public:
         // UpdateVersionBitsParametersFromArgs(args);
         UpdateBudgetParametersFromArgs(args);
 
-        genesis = CreateGenesisBlock(1724986340, 4755, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1724986340, 625, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0x797e33f0bf25e510d9405f06f008e6bfe9c8b5b6a6ae2328f48c7f1bce98bbb4"));
+               uint256S("0xc3f31ae629c37b43da0b23a4373cf9704d5082ae2deb5d39d88e4c85f43a929d"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x82f8bac8b4d2cce4d9f4e915a6c7053814814708f084b17afce3c5a221e81e03"));
+               uint256S("0x5eef5dfd14465af6b2f68328f97bc961a9894d4f4c21803d04497a3804f8c74d"));
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
