@@ -224,7 +224,7 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1724986340, 4755, 0x20001fff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1724986340, 4755, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
@@ -363,7 +363,7 @@ public:
         pchMessageStart[3] = 0x66; //b
         nDefaultPort = 20333;
         nPruneAfterHeight = 1000;
-        genesis = CreateGenesisBlock(1724986340, 4755, 0x20001fff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1724986340, 4755, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
@@ -518,7 +518,7 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        genesis = CreateGenesisBlock(1724986340, 4755, 0x20001fff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1724986340, 4755, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
@@ -696,7 +696,7 @@ public:
         // UpdateVersionBitsParametersFromArgs(args);
         UpdateBudgetParametersFromArgs(args);
 
-        genesis = CreateGenesisBlock(1724986340, 4755, 0x20001fff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1724986340, 4755, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==

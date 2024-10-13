@@ -54,7 +54,7 @@ void FortunePayment::GetFortuneAddressByHeight(int blockHeight)
 void FortunePayment::FillFortunePayment(CMutableTransaction &txNew, int nBlockHeight, CAmount blockReward,
                                         CTxOut &txoutFortuneRet) {
 
-    CAmount fortunePayment = getFortunePaymentAmount(nBlockHeight, blockReward);
+    CAmount fortunePayment = getFortunePaymentAmount(nBlockHeight -1, blockReward);
     txoutFortuneRet = CTxOut();
 
 
