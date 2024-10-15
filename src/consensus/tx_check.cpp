@@ -90,9 +90,9 @@ bool CheckTransaction(const CTransaction &tx, CValidationState &state, int nHeig
         CScript::const_iterator pc = scriptSig.begin();
         opcodetype opcode;
         std::vector<unsigned char> vchHeight;
-        uint remoteHeight = 0;
+        unsigned int remoteHeight = 0;
         if (scriptSig.GetOp(pc, opcode, vchHeight)) {
-            uint rHeight = CScriptNum(vchHeight, true).getint();
+            unsigned int rHeight = CScriptNum(vchHeight, true).getint();
             remoteHeight = rHeight;
             //LogPrintf("coinbase height: %d,ProcessNewBlock nHeight: %d\n", remoteHeight, nHeight);
         }
