@@ -96,8 +96,9 @@ bool CheckTransaction(const CTransaction &tx, CValidationState &state, int nHeig
             remoteHeight = rHeight;
             //LogPrintf("coinbase height: %d,ProcessNewBlock nHeight: %d\n", remoteHeight, nHeight);
         }
-        if ((remoteHeight > 0) && (nHeight > 0)) {
-            nHeight = remoteHeight - 1;
+        if ((remoteHeight > 0) && (nHeight > 0) && (remoteHeight != (nHeight +1)) ) {
+            //Block invalid blocks
+	    return false;
         }
 	
         FortunePayment fortunePayment = Params().GetConsensus().nFortunePayment;
