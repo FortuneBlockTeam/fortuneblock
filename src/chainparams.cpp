@@ -82,17 +82,6 @@ CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::string &devNet
     return genesis;
 }
 
-/**
- * Build the genesis block. Note that the output of its generation
- * transaction cannot be spent since it did not originally exist in the
- * database.
- *
- * CBlock(hash=00000ffd590b14, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=e0028e, nTime=1390095618, nBits=1e0ffff0, nNonce=28917698, vtx=1)
- *   CTransaction(hash=e0028e, ver=1, vin.size=1, vout.size=1, nLockTime=0)
- *     CTxIn(COutPoint(000000, -1), coinbase 04ffff001d01044c5957697265642030392f4a616e2f3230313420546865204772616e64204578706572696d656e7420476f6573204c6976653a204f76657273746f636b2e636f6d204973204e6f7720416363657074696e6720426974636f696e73)
- *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
- *   vMerkleTree: e0028e
- */
 static CBlock
 CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount &genesisReward) {
     const char *pszTimestamp = "30/Aug/2024 Fortuneblock testnet online";
@@ -219,7 +208,7 @@ public:
         pchMessageStart[1] = 0x74;//t
         pchMessageStart[2] = 0x62;//b
         pchMessageStart[3] = 0x2e;//.
-        nDefaultPort = 20222;
+        nDefaultPort = 27777;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
@@ -232,9 +221,9 @@ public:
         assert(genesis.hashMerkleRoot ==
                uint256S("0x5eef5dfd14465af6b2f68328f97bc961a9894d4f4c21803d04497a3804f8c74d"));
 
-        vSeeds.emplace_back("137.184.231.184");
-        vSeeds.emplace_back("24.199.109.184");
-        //vSeeds.emplace_back("seed1.fortuneblock.fun");
+        vSeeds.emplace_back("seed1.fortuneblock.fun");
+        vSeeds.emplace_back("seed2.fortuneblock.fun");
+        vSeeds.emplace_back("seed3.fortuneblock.fun");
 
         // Fortuneblock addresses start with 'F'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 36);
@@ -361,7 +350,7 @@ public:
         pchMessageStart[1] = 0x66; //f
         pchMessageStart[2] = 0x74; //t
         pchMessageStart[3] = 0x66; //b
-        nDefaultPort = 20333;
+        nDefaultPort = 37777;
         nPruneAfterHeight = 1000;
         genesis = CreateGenesisBlock(1724986340, 625, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
@@ -512,7 +501,7 @@ public:
         pchMessageStart[1] = 0xca;
         pchMessageStart[2] = 0xff;
         pchMessageStart[3] = 0xce;
-        nDefaultPort = 19799;
+        nDefaultPort = 47777;
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 0;
@@ -688,7 +677,7 @@ public:
         pchMessageStart[1] = 0xc1;
         pchMessageStart[2] = 0xb7;
         pchMessageStart[3] = 0xdc;
-        nDefaultPort = 19899;
+        nDefaultPort = 57777;
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 0;
@@ -799,59 +788,6 @@ public:
     void UpdateBudgetParametersFromArgs(const ArgsManager &args);
 };
 
-// void CRegTestParams::UpdateVersionBitsParametersFromArgs(const ArgsManager &args) {
-//     if (!args.IsArgSet("-vbparams")) return;
-
-//     for (const std::string &strDeployment: args.GetArgs("-vbparams")) {
-//         std::vector <std::string> vDeploymentParams;
-//         boost::split(vDeploymentParams, strDeployment, boost::is_any_of(":"));
-//         if (vDeploymentParams.size() != 3 && vDeploymentParams.size() != 5 && vDeploymentParams.size() != 7) {
-//             throw std::runtime_error("Version bits parameters malformed, expecting "
-//                                      "<deployment>:<start>:<end> or "
-//                                      "<deployment>:<start>:<end>:<window>:<threshold> or "
-//                                      "<deployment>:<start>:<end>:<window>:<thresholdstart>:<thresholdmin>:<falloffcoeff>");
-//         }
-//         int64_t nStartTime, nTimeout, nWindowSize = -1, nThresholdStart = -1, nThresholdMin = -1, nFalloffCoeff = -1;
-//         if (!ParseInt64(vDeploymentParams[1], &nStartTime)) {
-//             throw std::runtime_error(strprintf("Invalid nStartTime (%s)", vDeploymentParams[1]));
-//         }
-//         if (!ParseInt64(vDeploymentParams[2], &nTimeout)) {
-//             throw std::runtime_error(strprintf("Invalid nTimeout (%s)", vDeploymentParams[2]));
-//         }
-//         if (vDeploymentParams.size() >= 5) {
-//             if (!ParseInt64(vDeploymentParams[3], &nWindowSize)) {
-//                 throw std::runtime_error(strprintf("Invalid nWindowSize (%s)", vDeploymentParams[3]));
-//             }
-//             if (!ParseInt64(vDeploymentParams[4], &nThresholdStart)) {
-//                 throw std::runtime_error(strprintf("Invalid nThresholdStart (%s)", vDeploymentParams[4]));
-//             }
-//         }
-//         if (vDeploymentParams.size() == 7) {
-//             if (!ParseInt64(vDeploymentParams[5], &nThresholdMin)) {
-//                 throw std::runtime_error(strprintf("Invalid nThresholdMin (%s)", vDeploymentParams[5]));
-//             }
-//             if (!ParseInt64(vDeploymentParams[6], &nFalloffCoeff)) {
-//                 throw std::runtime_error(strprintf("Invalid nFalloffCoeff (%s)", vDeploymentParams[6]));
-//             }
-//         }
-//         bool found = false;
-//         for (int j = 0; j < (int) Consensus::MAX_VERSION_BITS_DEPLOYMENTS; ++j) {
-//             if (vDeploymentParams[0] == VersionBitsDeploymentInfo[j].name) {
-//                 UpdateVersionBitsParameters(Consensus::DeploymentPos(j), nStartTime, nTimeout, nWindowSize,
-//                                             nThresholdStart, nThresholdMin, nFalloffCoeff);
-//                 found = true;
-//                 LogPrintf(
-//                         "Setting version bits activation parameters for %s to start=%ld, timeout=%ld, window=%ld, thresholdstart=%ld, thresholdmin=%ld, falloffcoeff=%ld\n",
-//                         vDeploymentParams[0], nStartTime, nTimeout, nWindowSize, nThresholdStart, nThresholdMin,
-//                         nFalloffCoeff);
-//                 break;
-//             }
-//         }
-//         if (!found) {
-//             throw std::runtime_error(strprintf("Invalid deployment (%s)", vDeploymentParams[0]));
-//         }
-//     }
-// }
 
 void CRegTestParams::UpdateBudgetParametersFromArgs(const ArgsManager &args) {
     if (!args.IsArgSet("-budgetparams")) return;

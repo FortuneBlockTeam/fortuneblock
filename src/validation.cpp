@@ -1090,7 +1090,7 @@ CAmount
 GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params &consensusParams, bool fSuperblockPartOnly) {
     double nSubsidy = 500;      // (declaring the reward variable and its original/default amount)
     int halvings = nPrevHeight / consensusParams.nSubsidyHalvingInterval;
-    if (nPrevHeight < 720) {  //first day no instant mine
+    if (nPrevHeight < 721) {  //first day no instant mine
         nSubsidy = 1;
     } else  {      
         nSubsidy = nSubsidy / pow(2 , halvings);  
@@ -4366,7 +4366,9 @@ bool ChainstateManager::ProcessNewBlock(const CChainParams &chainparams, const s
         }
         if (!ret) {
             GetMainSignals().BlockChecked(*pblock, state);
+            if (state.GetRejectCode() > 0) {
             return error("%s: AcceptBlock FAILED: %s", __func__, FormatStateMessage(state));
+            }
         }
     }
 

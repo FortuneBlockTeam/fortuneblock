@@ -1,47 +1,43 @@
-Fortuneblock Core Latest v2.0.3
+Fortuneblock
 ===========================
 
 FortuneBlock is a community-driven project, and we welcome anyone to join us to make it stronger.
 
+
+Core Features
+-------------
+
+No Pre-Mining or Instant Mining: 
+
+We adhere to the principle of fairness, with all tokens generated through mining after the blockchain network launches. By eliminating pre-mining and instant mining mechanisms, we ensure that all participants have equal opportunities to acquire tokens, preventing early investors from gaining an unfair advantage.
+
+No Developer Fees: 
+
+We commit to not charging any developer fees throughout the project. All profits will be directly distributed to miners and token holders, ensuring that every participant benefits from the network's success.
+
+No ICO: 
+
+To avoid speculation and price manipulation, we have chosen not to conduct an Initial Coin Offering (ICO). This decision emphasizes our transparency and commitment to the community, allowing everyone an equal opportunity to participate.
+
+Unique Fortuneblock Algorithm: 
+
+Our network employs a unique Fortuneblock algorithm aimed at enhancing transaction processing speed and security. This algorithm optimizes block generation times while introducing innovative mechanisms to bolster the network's resistance to attacks, ensuring that users' transactions are always secure and fast.
+
+Community-Driven: Our development roadmap will be shaped collectively by the community. User feedback and needs will directly influence future features and improvements, ensuring the currency meets real-world usage requirements.
+
+Vision
+------
+Our vision is to develop this new cryptocurrency into a mainstream payment solution, widely used in everyday transactions. We believe that with its transparent, fair, and secure characteristics, this currency will earn users' trust and support worldwide.
+
+Join Us
+-------
+
+We invite everyone interested in cryptocurrency to join our community and witness the development and growth of this new payment method. Whether you are a miner, developer, or a regular user, your participation will be key to our success.
+
+Let¡¯s work together to drive the future of finance and create a payment currency that everyone can use!
+
 License
 -------
 
-Fortuneblock Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+Fortuneblock is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
-
-Development Process
--------------------
-
-The `master` branch is meant to be stable. Development is done in separate branches.
-[Tags](https://github.com/FortuneBlockTeam/fortuneblock/tags) are created to indicate new official,
-stable release versions of Fortuneblock Core.
-
-The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
-
-Testing
--------
-
-Testing and code review is the bottleneck for development; we get more pull
-requests than we can review and test on short notice. Please be patient and help out by testing
-other people's pull requests, and remember this is a security-critical project where any mistake might cost people
-lots of money.
-
-### Automated Testing
-
-Developers are strongly encouraged to write [unit tests](src/test/README.md) for new code, and to
-submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled in configure) with: `make check`. Further details on running
-and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
-
-There are also [regression and integration tests](/test), written
-in Python, that are run automatically on the build server.
-These tests can be run (if the [test dependencies](/test) are installed) with: `test/functional/test_runner.py`
-
-The Travis CI system makes sure that every pull request is built for Windows, Linux, and OS X, and that unit/sanity tests are run automatically.
-
-### Manual Quality Assurance (QA) Testing
-
-Changes should be tested by somebody other than the developer who wrote the
-code. This is especially important for large or high-risk changes. It is useful
-to add a test plan to the pull request description if testing the changes is
-not straightforward.

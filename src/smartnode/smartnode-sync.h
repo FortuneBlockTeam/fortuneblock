@@ -25,7 +25,7 @@ static const int SMARTNODE_SYNC_GOVOBJ_VOTE = 11;
 static const int SMARTNODE_SYNC_FINISHED = 999;
 
 static const int SMARTNODE_SYNC_TICK_SECONDS = 6;
-static const int SMARTNODE_SYNC_TIMEOUT_SECONDS = 30; // our blocks are 2.5 minutes so 30 seconds should be fine
+static const int SMARTNODE_SYNC_TIMEOUT_SECONDS = 30; // our blocks are 2 minutes so 30 seconds should be fine
 static const int SMARTNODE_SYNC_RESET_SECONDS = 600; // Reset fReachedBestHeader in CSmartnodeSync::Reset if UpdateBlockTip hasn't been called for this seconds
 
 extern CSmartnodeSync smartnodeSync;
