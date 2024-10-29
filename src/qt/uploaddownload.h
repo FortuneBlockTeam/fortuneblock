@@ -14,8 +14,8 @@
 
 static std::string GET_URI = "/get/";
 static std::string UPLOAD_URI = "/upload";
-static std::string DEFAULT_IPFS_SERVICE_URL = "ipfsm.fortuneblock.fun";
-static std::string DEFAULT_IPFS_GATEWAY_URL = "https://ipfsweb.fortuneblock.fun/ipfs/";
+static std::string DEFAULT_IPFS_SERVICE_URL = "ipfsm.fortuneblock.xyz";
+static std::string DEFAULT_IPFS_GATEWAY_URL = "https://ipfsweb.fortuneblock.xyz/ipfs/";
 
 void download(const std::string cid, std::string& response_data);
 void upload(const std::string& file_path, std::string& response_data);

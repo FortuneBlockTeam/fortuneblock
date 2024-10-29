@@ -981,7 +981,7 @@ void SetupServerArgs() {
 
 std::string LicenseInfo() {
     const std::string URL_SOURCE_CODE = "<https://github.com/FortuneBlockTeam/fortuneblock>";
-    const std::string URL_WEBSITE = "<https://fortuneblock.fun>";
+    const std::string URL_WEBSITE = "<https://fortuneblock.xyz>";
 
     return CopyrightHolders(_("Copyright (C)"), 2024, COPYRIGHT_YEAR) + "\n" +
            "\n" +

@@ -1,8 +1,8 @@
 Source: fortuneblock
 Section: utils
 Priority: optional
-Maintainer: Holger Schinzel <holger@fortuneblock.fun>
-Uploaders: Holger Schinzel <holger@fortuneblock.fun>
+Maintainer: Holger Schinzel <holger@fortuneblock.xyz>
+Uploaders: Holger Schinzel <holger@fortuneblock.xyz>
 Build-Depends: debhelper,
  devscripts,
  automake,
@@ -22,7 +22,7 @@ Build-Depends: debhelper,
  python,
  libzmq3-dev
 Standards-Version: 3.9.2
-Homepage: https://fortuneblock.fun/
+Homepage: https://fortuneblock.xyz/
 Vcs-Git: git://github.com/FortuneBlockTeam/fortuneblock.git
 Vcs-Browser: https://github.com/FortuneBlockTeam/fortuneblock
 

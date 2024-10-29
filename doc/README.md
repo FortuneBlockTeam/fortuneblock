@@ -1,7 +1,7 @@
 Fortuneblock Core
 ==========
 
-This is the official reference wallet for Fortuneblock digital currency and comprises the backbone of the Fortuneblock peer-to-peer network. You can [download Fortuneblock Core](https://www.fortuneblock.fun/downloads/) or [build it yourself](#building) using the guides below.
+This is the official reference wallet for Fortuneblock digital currency and comprises the backbone of the Fortuneblock peer-to-peer network. You can [download Fortuneblock Core](https://www.fortuneblock.xyz/downloads/) or [build it yourself](#building) using the guides below.
 
 Running
 ---------------------
@@ -24,12 +24,12 @@ Drag Fortuneblock-Qt to your applications folder, and then run Fortuneblock-Qt.
 
 ### Need Help?
 
-* See the [Fortuneblock documentation](https://docs.fortuneblock.fun)
+* See the [Fortuneblock documentation](https://docs.fortuneblock.xyz)
 for help and more information.
 * See the [Fortuneblock Developer Documentation](https://fortuneblock-docs.github.io/) 
 for technical specifications and implementation details.
 * Ask for help on [Fortuneblock Nation Discord](http://fortuneblockchat.org)
-* Ask for help on the [Fortuneblock Forum](https://fortuneblock.fun/forum)
+* Ask for help on the [Fortuneblock Forum](https://fortuneblock.xyz/forum)
 
 Building
 ---------------------
@@ -60,7 +60,7 @@ The Fortuneblock Core repo's [root README](/README.md) contains relevant informa
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [Fortuneblock Forum](https://fortuneblock.fun/forum), in the Development & Technical Discussion board.
+* Discuss on the [Fortuneblock Forum](https://fortuneblock.xyz/forum), in the Development & Technical Discussion board.
 * Discuss on [Fortuneblock Nation Discord](http://fortuneblockchat.org)
 
 ### Miscellaneous

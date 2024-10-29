@@ -221,9 +221,9 @@ public:
         assert(genesis.hashMerkleRoot ==
                uint256S("0x5eef5dfd14465af6b2f68328f97bc961a9894d4f4c21803d04497a3804f8c74d"));
 
-        vSeeds.emplace_back("seed1.fortuneblock.fun");
-        vSeeds.emplace_back("seed2.fortuneblock.fun");
-        vSeeds.emplace_back("seed3.fortuneblock.fun");
+        vSeeds.emplace_back("seed1.fortuneblock.xyz");
+        vSeeds.emplace_back("seed2.fortuneblock.xyz");
+        vSeeds.emplace_back("seed3.fortuneblock.xyz");
 
         // Fortuneblock addresses start with 'F'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 36);
@@ -366,8 +366,8 @@ public:
 
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("testseed1.fortuneblock.fun");
-        vSeeds.emplace_back("testseed2.fortuneblock.fun");
+        vSeeds.emplace_back("testseed1.fortuneblock.xyz");
+        vSeeds.emplace_back("testseed2.fortuneblock.xyz");
 
         // Testnet Fortuneblock addresses start with 'f'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 95);
@@ -525,8 +525,8 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.emplace_back("devseed1.fortuneblock.fun");
-        //vSeeds.push_back(CDNSSeedData("fortuneblock.fun",  "devnet-seed.fortuneblock.fun"));
+        vSeeds.emplace_back("devseed1.fortuneblock.xyz");
+        //vSeeds.push_back(CDNSSeedData("fortuneblock.xyz",  "devnet-seed.fortuneblock.xyz"));
 
         // Testnet Fortuneblock addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 140);

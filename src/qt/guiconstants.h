@@ -48,7 +48,7 @@ static const int MAX_URI_LENGTH = 255;
 #define SPINNER_FRAMES 36
 
 #define QAPP_ORG_NAME "Fortuneblock"
-#define QAPP_ORG_DOMAIN "fortuneblock.fun"
+#define QAPP_ORG_DOMAIN "fortuneblock.xyz"
 #define QAPP_APP_NAME_DEFAULT "Fortuneblock-Qt"
 #define QAPP_APP_NAME_TESTNET "Fortuneblock-Qt-testnet"
 #define QAPP_APP_NAME_DEVNET "Fortuneblock-Qt-%s"
