@@ -84,7 +84,7 @@ CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::string &devNet
 
 static CBlock
 CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount &genesisReward) {
-    const char *pszTimestamp = "30/Aug/2024 Fortuneblock testnet online";
+    const char *pszTimestamp = "30/Oct/2024 Fortuneblock mainnet ready";
     const CScript genesisOutputScript = CScript() << ParseHex(
             "04ba0980f5f65e3d63017aab08870af0aab1505e8788701854dce44d32c4481597d4cc9651db59b84ea310ad2c3b5c8eab941b4289eb3e5f46bff7081e44770392")
                                                   << OP_CHECKSIG;
@@ -213,13 +213,13 @@ public:
         m_assumed_blockchain_size = 7;
         m_assumed_chain_state_size = 2;
         //FindMainNetGenesisBlock(1614369600, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1724986340, 625, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1730252753, 2333, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xc3f31ae629c37b43da0b23a4373cf9704d5082ae2deb5d39d88e4c85f43a929d"));
+               uint256S("0x5964b3276e0c26e42e564fee9275183c717bbdcfefe18537fcc3f3185d6e01ee"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x5eef5dfd14465af6b2f68328f97bc961a9894d4f4c21803d04497a3804f8c74d"));
+               uint256S("0x02b7e5f863f16688956780508b80234466c84eb191e73e5c455d7ffce6e6b9b8"));
 
         vSeeds.emplace_back("seed1.fortuneblock.xyz");
         vSeeds.emplace_back("seed2.fortuneblock.xyz");
@@ -352,13 +352,13 @@ public:
         pchMessageStart[3] = 0x66; //b
         nDefaultPort = 37777;
         nPruneAfterHeight = 1000;
-        genesis = CreateGenesisBlock(1724986340, 625, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1730252753, 2333, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xc3f31ae629c37b43da0b23a4373cf9704d5082ae2deb5d39d88e4c85f43a929d"));
+               uint256S("0x5964b3276e0c26e42e564fee9275183c717bbdcfefe18537fcc3f3185d6e01ee"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x5eef5dfd14465af6b2f68328f97bc961a9894d4f4c21803d04497a3804f8c74d"));
+               uint256S("0x02b7e5f863f16688956780508b80234466c84eb191e73e5c455d7ffce6e6b9b8"));
 
  
         vFixedSeeds.clear();
@@ -507,13 +507,13 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        genesis = CreateGenesisBlock(1724986340, 625, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1730252753, 2333, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xc3f31ae629c37b43da0b23a4373cf9704d5082ae2deb5d39d88e4c85f43a929d"));
+               uint256S("0x5964b3276e0c26e42e564fee9275183c717bbdcfefe18537fcc3f3185d6e01ee"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x5eef5dfd14465af6b2f68328f97bc961a9894d4f4c21803d04497a3804f8c74d"));
+               uint256S("0x02b7e5f863f16688956780508b80234466c84eb191e73e5c455d7ffce6e6b9b8"));
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 
@@ -685,13 +685,13 @@ public:
         // UpdateVersionBitsParametersFromArgs(args);
         UpdateBudgetParametersFromArgs(args);
 
-        genesis = CreateGenesisBlock(1724986340, 625, 0x20001fff, 4, 500 * COIN);
+        genesis = CreateGenesisBlock(1730252753, 2333, 0x20001fff, 4, 500 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock ==
-               uint256S("0xc3f31ae629c37b43da0b23a4373cf9704d5082ae2deb5d39d88e4c85f43a929d"));
+               uint256S("0x5964b3276e0c26e42e564fee9275183c717bbdcfefe18537fcc3f3185d6e01ee"));
         assert(genesis.hashMerkleRoot ==
-               uint256S("0x5eef5dfd14465af6b2f68328f97bc961a9894d4f4c21803d04497a3804f8c74d"));
+               uint256S("0x02b7e5f863f16688956780508b80234466c84eb191e73e5c455d7ffce6e6b9b8"));
 
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
 

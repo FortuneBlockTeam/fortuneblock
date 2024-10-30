@@ -85,7 +85,6 @@ bool FortunePayment::IsBlockPayeeValid(const CTransaction &txNew, const int heig
     BOOST_FOREACH(
     const CTxOut &out, txNew.vout) {
         if (out.scriptPubKey == payee && out.nValue >= fortuneReward) {
-	    LogPrintf("Checked!\n");
             return true;
         }
     }
