@@ -48,7 +48,7 @@ Compile depends:
 
 
 ```bash
-$ cd depends
+$ cd fortuneblock/depends
 $ make -j4 # Choose a good -j value, depending on the number of CPU cores available
 $ cd ..
 ```
