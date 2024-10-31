@@ -74,9 +74,6 @@ void FortunePayment::FillFortunePayment(CMutableTransaction &txNew, int nBlockHe
 }
 
 bool FortunePayment::IsBlockPayeeValid(const CTransaction &txNew, const int height, const CAmount blockReward) {
-    LogPrintf("IsBlockPayeeValid height: %d\n",height);
-
-
     GetFortuneAddressByHeight(height);
     LogPrintf("IsBlockPayeeValid fortuneAddress: %s\n",fortuneAddress);
 
