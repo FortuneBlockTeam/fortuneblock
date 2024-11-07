@@ -4366,7 +4366,7 @@ bool ChainstateManager::ProcessNewBlock(const CChainParams &chainparams, const s
         }
         if (!ret) {
             GetMainSignals().BlockChecked(*pblock, state);
-            if (state.GetRejectCode() > 0) {
+            if (state.GetRejectCode() > 0) { //todo //Here requires code logic optimization.
             return error("%s: AcceptBlock FAILED: %s", __func__, FormatStateMessage(state));
             }
         }
@@ -4377,8 +4377,8 @@ bool ChainstateManager::ProcessNewBlock(const CChainParams &chainparams, const s
     CValidationState state; // Only used to report errors, not invalidity - ignore it
     if (!::ChainstateActive().ActivateBestChain(state, chainparams, pblock))
         return error("%s: ActivateBestChain failed: %s", __func__, FormatStateMessage(state));
-
-    LogPrintf("%s : ACCEPTED\n", __func__);
+    // Remove flood messages under specific conditions
+    //LogPrintf("%s : ACCEPTED\n", __func__); 
     return true;
 }
 
