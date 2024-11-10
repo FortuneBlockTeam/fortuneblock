@@ -106,7 +106,8 @@ bool CheckTransaction(const CTransaction &tx, CValidationState &state, int nHeig
         int fortuneStartHeight = fortunePayment.getStartBlock();
         if (nHeight > fortuneStartHeight && fortuneReward &&
             !fortunePayment.IsBlockPayeeValid(tx, nHeight, blockReward)) {
-            return state.DoS(100, false, REJECT_INVALID, "bad-cb-fortune-payment-not-found");
+	    //Temporarily do not penalize nodes that send erroneous fortune information.
+            return state.DoS(0, false, REJECT_INVALID, "bad-cb-fortune-payment-not-found");
         }
 	
         //don't allow assets on coinbase. coinbase assets are not implemented
