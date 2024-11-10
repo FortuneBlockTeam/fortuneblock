@@ -224,6 +224,8 @@ public:
         vSeeds.emplace_back("seed1.fortuneblock.xyz");
         vSeeds.emplace_back("seed2.fortuneblock.xyz");
         vSeeds.emplace_back("seed3.fortuneblock.xyz");
+        vSeeds.emplace_back("seed4.fortuneblock.xyz");
+        vSeeds.emplace_back("seed5.fortuneblock.xyz");
 
         // Fortuneblock addresses start with 'F'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 36);
@@ -284,7 +286,8 @@ public:
         checkpointData = {
                 {
                     {1000, uint256S("0x341d9bf163ee43d354868883f2d2bb80315e0d9249f958e85ee13cb1f800a21f")},
-                    {5000, uint256S("0x5ff40a0b611e6889e3aeae4fc8b94a4b08a27d0875f1191527196a6502cdef35")}
+                    {5000, uint256S("0x5ff40a0b611e6889e3aeae4fc8b94a4b08a27d0875f1191527196a6502cdef35")},
+                    {7500, uint256S("0x564fda76f54c772fc81629a181b11f9085de7733a1f111928bd47dc996b1056a")}
                 }
         };
 
