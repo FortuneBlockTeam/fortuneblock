@@ -5545,14 +5545,23 @@ std::string GetBlockCoinbaseMinerAddress(int blockHeight)
         return strDefaultFortuneAddress; // no vout in Coinbase
     }
 
+    //Find the fortune address accurately
+    //The address with the largest output amount is the miner address
+
+    CAmount maxAmount = 0;
+    std::string highestAddress = strDefaultFortuneAddress;
+
     for (const CTxOut& txout : coinbaseTx->vout) {
         CTxDestination address;
         if (ExtractDestination(txout.scriptPubKey, address)) {
-            return EncodeDestination(address); // return address
+            if (txout.nValue > maxAmount) {
+                maxAmount = txout.nValue;
+                highestAddress = EncodeDestination(address);
+            }          
         }
     }
+    return highestAddress; // return address
 
-    return strDefaultFortuneAddress; // can't get address
 }
 
 CBlockFileInfo *GetBlockFileInfo(size_t n) {
