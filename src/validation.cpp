@@ -3931,7 +3931,7 @@ static bool ContextualCheckBlockHeader(const CBlockHeader &block, CValidationSta
         // BlockIndex().
         CBlockIndex *pcheckpoint = Checkpoints::GetLastCheckpoint(params.Checkpoints());
         if (pcheckpoint && nHeight < pcheckpoint->nHeight)
-            return state.DoS(100, error("%s: forked chain older than last checkpoint (height %d)", __func__, nHeight),
+            return state.DoS(100, log("INFO","%s: forked chain older than last checkpoint (height %d)", __func__, nHeight),
                              REJECT_CHECKPOINT, "bad-fork-prior-to-checkpoint");
     }
 
@@ -4070,7 +4070,7 @@ BlockManager::AcceptBlockHeader(const CBlockHeader &block, CValidationState &sta
                                        block.hashPrevBlock.ToString()), REJECT_INVALID, "bad-prevblk-chainlock");
 
         if (!ContextualCheckBlockHeader(block, state, chainparams, pindexPrev, GetAdjustedTime()))
-            return error("%s: Consensus::ContextualCheckBlockHeader: %s, %s", __func__, hash.ToString(),
+            return log("INFO","%s: Consensus::ContextualCheckBlockHeader: %s, %s", __func__, hash.ToString(),
                          FormatStateMessage(state));
 
         // If the previous block index isn't valid, determine if it descends from any block which

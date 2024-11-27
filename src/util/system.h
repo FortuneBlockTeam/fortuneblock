@@ -86,6 +86,14 @@ bool error(const char *fmt, const Args &... args) {
     return false;
 }
 
+template <typename... Args>
+bool log(const char* level, const char* fmt, const Args&... args)
+{
+    LogPrintf("%s: %s\n", level, SafeStringFormat(fmt, args...));
+    return false;
+}
+
+
 void PrintExceptionContinue(const std::exception_ptr pex, const char *pszExceptionOrigin);
 
 bool FileCommit(FILE *file);
