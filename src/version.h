@@ -18,9 +18,9 @@ static const int PROTOCOL_VERSION = 70223;
 static const int INIT_PROTO_VERSION = 209;
 
 //! disconnect from peers older than this proto version
-static const int OLD_MIN_PEER_PROTO_VERSION = 70222;
+static const int OLD_MIN_PEER_PROTO_VERSION = 70223;
 
-static const int MIN_PEER_PROTO_VERSION = 70222;
+static const int MIN_PEER_PROTO_VERSION = 70223;
 
 //! minimum proto version of smartnode to accept in DKGs
 static const int OLD_MIN_SMARTNODE_PROTO_VERSION = 70222;

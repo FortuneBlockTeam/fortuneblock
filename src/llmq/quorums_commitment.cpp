@@ -179,7 +179,11 @@ namespace llmq {
 
         if (qcTx.commitment.IsNull()) {
             if (!qcTx.commitment.VerifyNull()) {
-                return state.DoS(100, false, REJECT_INVALID, "bad-qc-invalid-null");
+                if (((pindexPrev->nHeight > 16538) && (pindexPrev->nHeight < 17000)) || ((pindexPrev->nHeight > 17018) && (pindexPrev->nHeight < 17300))) {
+                    return true;
+                } else {
+                    return state.DoS(100, false, REJECT_INVALID, "bad-qc-invalid-null");
+                }
             }
             return true;
         }
