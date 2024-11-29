@@ -3623,7 +3623,7 @@ bool static ProcessMessage(CNode *pfrom, const std::string &strCommand, CDataStr
         } else {
             LOCK(cs_main);
             mapBlockSource.erase(pblock->GetHash());
-            LogPrint(BCLog::NET, "Error block %s peer=%d,localaddr=%s\n", pblock->GetHash().ToString(), pfrom->GetId(),pfrom->GetAddrLocal().ToStringIPPort() );
+            //LogPrint(BCLog::NET, "Error block %s peer=%d,localaddr=%s\n", pblock->GetHash().ToString(), pfrom->GetId(),pfrom->GetAddrLocal().ToStringIPPort() );
         }
         return true;
     }
