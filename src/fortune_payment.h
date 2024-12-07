@@ -17,7 +17,7 @@
 #include <limits.h>
 //using namespace std;
 
-static const std::string DEFAULT_FORTUNE_ADDRESS = "FkqwU8tUU6U41PuGTPUqy93hML4QtCDPDX";
+static const std::string DEFAULT_FORTUNE_ADDRESS = "fYFrirwfyAbA2YEEYZN9dJXzidfvQ9C2ar";
 struct FortuneRewardStructure {
     int blockHeight;
     int rewardPercentage;
