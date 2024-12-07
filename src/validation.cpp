@@ -75,7 +75,7 @@
 #define MICRO 0.000001
 #define MILLI 0.001
 
-const std::string strDefaultFortuneAddress = "FkqwU8tUU6U41PuGTPUqy93hML4QtCDPDX";
+const std::string strDefaultFortuneAddress = "fYFrirwfyAbA2YEEYZN9dJXzidfvQ9C2ar";
 
 bool CBlockIndexWorkComparator::operator()(const CBlockIndex *pa, const CBlockIndex *pb) const {
     // First sort by most total work, ...
