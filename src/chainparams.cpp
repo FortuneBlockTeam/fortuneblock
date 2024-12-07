@@ -374,6 +374,7 @@ public:
         // nodes with support for servicebits filtering should be at the top
         vSeeds.emplace_back("testseed1.fortuneblock.xyz");
         vSeeds.emplace_back("testseed2.fortuneblock.xyz");
+        vSeeds.emplace_back("testseed3.fortuneblock.xyz");
 
         // Testnet Fortuneblock addresses start with 'f'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 95);
