@@ -207,12 +207,7 @@ namespace llmq {
 
         if (qc.IsNull()) {
             if (!qc.VerifyNull()) {
-                //During this period, an error occurred in the LLMQ, specific blocks are yet to be identified.
-                if (((nHeight > 16538) && (nHeight < 17000)) || ((nHeight > 17018) && (nHeight < 17300))) {
-                    return true;
-                } else {
-                    return state.DoS(100, false, REJECT_INVALID, "bad-qc-invalid-null");
-                }
+                return state.DoS(100, false, REJECT_INVALID, "bad-qc-invalid-null");              
             }
             return true;
         }

@@ -29,36 +29,11 @@ CAmount FortunePayment::getFortunePaymentAmount(int blockHeight, CAmount blockRe
     return 0;
 }
 
-void FortunePayment::GetFortuneAddressByHeight(int blockHeight)
-{
-    
-    if (blockHeight <= 0 || blockHeight > ChainActive().Height()) {
-        //LogPrintf("Invalid block height: %d\n", blockHeight);
-        fortuneAddress = DEFAULT_FORTUNE_ADDRESS;
-        return;
-    }
-
-    CBlockIndex* pblockindex = ChainActive()[blockHeight];
-    if (!pblockindex) {
-        LogPrintf("Block index not found for height: %d\n", blockHeight);
-        fortuneAddress = DEFAULT_FORTUNE_ADDRESS;
-        return;
-    }
-    int luckyHeight = static_cast<int>((pblockindex->GetBlockHash().GetUint64(0) ^ pblockindex->GetBlockHash().GetUint64(1) ^ pblockindex->GetBlockHash().GetUint64(2) ^ pblockindex->GetBlockHash().GetUint64(3)) % pblockindex->nHeight);
-    LogPrintf("blockHeight : %d, luckyHeight: %d\n", blockHeight,luckyHeight);
-
-    fortuneAddress = GetBlockCoinbaseMinerAddress(luckyHeight);
-
-}
-
 void FortunePayment::FillFortunePayment(CMutableTransaction &txNew, int nBlockHeight, CAmount blockReward,
                                         CTxOut &txoutFortuneRet) {
 
-    CAmount fortunePayment = getFortunePaymentAmount(nBlockHeight -1, blockReward);
+    CAmount fortunePayment = getFortunePaymentAmount(nBlockHeight, blockReward);
     txoutFortuneRet = CTxOut();
-
-
-    GetFortuneAddressByHeight(nBlockHeight - 1);
 
     CTxDestination fortuneAddr = DecodeDestination(fortuneAddress);
     if (!IsValidDestination(fortuneAddr))
@@ -74,8 +49,6 @@ void FortunePayment::FillFortunePayment(CMutableTransaction &txNew, int nBlockHe
 }
 
 bool FortunePayment::IsBlockPayeeValid(const CTransaction &txNew, const int height, const CAmount blockReward) {
-    GetFortuneAddressByHeight(height);
-    LogPrintf("IsBlockPayeeValid fortuneAddress: %s\n",fortuneAddress);
 
     CScript payee = GetScriptForDestination(DecodeDestination(fortuneAddress));
     const CAmount fortuneReward = getFortunePaymentAmount(height, blockReward);
@@ -85,8 +58,6 @@ bool FortunePayment::IsBlockPayeeValid(const CTransaction &txNew, const int heig
             return true;
         }
     }
-    LogPrintf("IsBlockPayeevalid error\n");
-
     return false;
 }
 

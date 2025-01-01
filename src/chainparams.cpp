@@ -159,7 +159,7 @@ public:
     CMainParams() {
         strNetworkID = CBaseChainParams::MAIN;
         consensus.nSubsidyHalvingInterval = 260000; 
-        consensus.nSmartnodePaymentsStartBlock = 5000; //
+        consensus.nSmartnodePaymentsStartBlock = 1; // block 1
         consensus.nInstantSendConfirmationsRequired = 6;
         consensus.nInstantSendKeepLock = 24;
         consensus.nBudgetPaymentsStartBlock = INT_MAX; // actual historical value
@@ -221,11 +221,16 @@ public:
         assert(genesis.hashMerkleRoot ==
                uint256S("0xb01b899408aaf74ef1d1a2c71ab4226cdf65508582be84e932154e3dba74bc78"));
 
+        /*
         vSeeds.emplace_back("seed1.fortuneblock.xyz");
         vSeeds.emplace_back("seed2.fortuneblock.xyz");
         vSeeds.emplace_back("seed3.fortuneblock.xyz");
         vSeeds.emplace_back("seed4.fortuneblock.xyz");
         vSeeds.emplace_back("seed5.fortuneblock.xyz");
+        */
+        //add test seed
+        vSeeds.emplace_back("146.190.219.47");
+        vSeeds.emplace_back("146.190.70.91");
 
         // Fortuneblock addresses start with 'F'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 36);
@@ -285,10 +290,7 @@ public:
 
         checkpointData = {
                 {
-                    {1000,  uint256S("0x341d9bf163ee43d354868883f2d2bb80315e0d9249f958e85ee13cb1f800a21f")},
-                    {5000,  uint256S("0x5ff40a0b611e6889e3aeae4fc8b94a4b08a27d0875f1191527196a6502cdef35")},
-                    {7500,  uint256S("0x564fda76f54c772fc81629a181b11f9085de7733a1f111928bd47dc996b1056a")},
-                    {12345, uint256S("0x72341fe3f485de858c8f2b2e196a21eb5720968cf68a3d6b1213b9f7cac8336d")}
+
                 }
         };
 
