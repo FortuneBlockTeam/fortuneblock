@@ -1088,11 +1088,9 @@ CAmount
 GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params &consensusParams, bool fSuperblockPartOnly) {
     double nSubsidy = 500;      // (declaring the reward variable and its original/default amount)
     int halvings = nPrevHeight / consensusParams.nSubsidyHalvingInterval;
-    if (nPrevHeight < 721) {  //first day no instant mine
-        nSubsidy = 1;
-    } else  {      
-        nSubsidy = nSubsidy / pow(2 , halvings);  
-    } 
+    
+    nSubsidy = nSubsidy / pow(2 , halvings);  
+
     return nSubsidy * COIN;
 }
 
