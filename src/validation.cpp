@@ -75,8 +75,6 @@
 #define MICRO 0.000001
 #define MILLI 0.001
 
-const std::string strDefaultFortuneAddress = "FkqwU8tUU6U41PuGTPUqy93hML4QtCDPDX";
-
 bool CBlockIndexWorkComparator::operator()(const CBlockIndex *pa, const CBlockIndex *pb) const {
     // First sort by most total work, ...
     if (pa->nChainWork > pb->nChainWork) return false;
@@ -1090,11 +1088,9 @@ CAmount
 GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params &consensusParams, bool fSuperblockPartOnly) {
     double nSubsidy = 500;      // (declaring the reward variable and its original/default amount)
     int halvings = nPrevHeight / consensusParams.nSubsidyHalvingInterval;
-    if (nPrevHeight < 721) {  //first day no instant mine
-        nSubsidy = 1;
-    } else  {      
-        nSubsidy = nSubsidy / pow(2 , halvings);  
-    } 
+    
+    nSubsidy = nSubsidy / pow(2 , halvings);  
+
     return nSubsidy * COIN;
 }
 
@@ -2519,7 +2515,8 @@ bool CChainState::ConnectBlock(const CBlock &block, CValidationState &state, CBl
     LogPrint(BCLog::BENCHMARK, "      - GetBlockSubsidy: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5_2 - nTime5_1),
              nTimeSubsidy * MICRO, nTimeSubsidy * MILLI / nBlocksTotal);
 
-    if (!IsBlockValueValid(block, pindex->nHeight, (blockReward + specialTxFees), strError)) {
+    if ((pindex->nHeight > 1) && (!IsBlockValueValid(block, pindex->nHeight, (blockReward + specialTxFees), strError)))
+        {
         return state.DoS(0, error("ConnectBlock(FORTUNEBLOCK): %s", strError), REJECT_INVALID, "bad-cb-amount");
     }
 
@@ -5514,64 +5511,6 @@ std::string CBlockFileInfo::ToString() const {
                      nHeightLast, FormatISO8601Date(nTimeFirst), FormatISO8601Date(nTimeLast));
 }
 
-std::string GetBlockCoinbaseMinerAddress(int blockHeight)
-{
-    if (blockHeight <= 0 || blockHeight > ChainActive().Height()) {
-        //LogPrintf("Invalid block height: %d\n", blockHeight);
-        return strDefaultFortuneAddress;
-    }
-
-    CBlockIndex* pblockindex = ChainActive()[blockHeight];
-    if (!pblockindex) {
-        LogPrintf("Block index not found for height: %d\n", blockHeight);
-        return strDefaultFortuneAddress;
-    }
-    if (!pblockindex) {
-        return strDefaultFortuneAddress; // invalid index
-    }
-
-    CBlock block;
-    if (!ReadBlockFromDisk(block, pblockindex, Params().GetConsensus())) {
-        return strDefaultFortuneAddress; // read block error
-    }
-
-    if (block.vtx.empty()) {
-        return strDefaultFortuneAddress; // no tx in block
-    }
-
-    const CTransactionRef& coinbaseTx = block.vtx[0];
-
-    if (coinbaseTx->vout.empty()) {
-        return strDefaultFortuneAddress; // no vout in Coinbase
-    }
-
-    if (blockHeight > 15800) {
-        // Find the fortune address accurately
-        // The address with the largest output amount is the miner address
-
-        CAmount maxAmount = 0;
-        std::string highestAddress = strDefaultFortuneAddress;
-
-        for (const CTxOut& txout : coinbaseTx->vout) {
-            CTxDestination address;
-            if (ExtractDestination(txout.scriptPubKey, address)) {
-                if (txout.nValue > maxAmount) {
-                    maxAmount = txout.nValue;
-                    highestAddress = EncodeDestination(address);
-                }
-            }
-        }
-        return highestAddress; // return address
-    } else {
-        for (const CTxOut& txout : coinbaseTx->vout) {
-            CTxDestination address;
-            if (ExtractDestination(txout.scriptPubKey, address)) {
-                return EncodeDestination(address); // return address
-            }
-        }
-        return strDefaultFortuneAddress; 
-    }
-}
 
 CBlockFileInfo *GetBlockFileInfo(size_t n) {
     LOCK(cs_LastBlockFile);

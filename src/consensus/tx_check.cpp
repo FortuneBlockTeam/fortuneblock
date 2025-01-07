@@ -85,22 +85,6 @@ bool CheckTransaction(const CTransaction &tx, CValidationState &state, int nHeig
         if (tx.vin[0].scriptSig.size() < minCbSize || tx.vin[0].scriptSig.size() > 100)
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-length");
 
-        //check height from coinbase 
-        CScript scriptSig = tx.vin[0].scriptSig;
-        CScript::const_iterator pc = scriptSig.begin();
-        opcodetype opcode;
-        std::vector<unsigned char> vchHeight;
-        unsigned int remoteHeight = 0;
-        if (scriptSig.GetOp(pc, opcode, vchHeight)) {
-            unsigned int rHeight = CScriptNum(vchHeight, true).getint();
-            remoteHeight = rHeight;
-            //LogPrintf("coinbase height: %d,ProcessNewBlock nHeight: %d\n", remoteHeight, nHeight);
-        }
-        if ((remoteHeight > 0) && (nHeight > 0) && (remoteHeight != (nHeight +1)) ) {
-            //Block invalid blocks
-	    return false;
-        }
-	
         FortunePayment fortunePayment = Params().GetConsensus().nFortunePayment;
         CAmount fortuneReward = fortunePayment.getFortunePaymentAmount(nHeight, blockReward);
         int fortuneStartHeight = fortunePayment.getStartBlock();
