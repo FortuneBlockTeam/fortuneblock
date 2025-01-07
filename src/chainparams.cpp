@@ -221,16 +221,11 @@ public:
         assert(genesis.hashMerkleRoot ==
                uint256S("0xb01b899408aaf74ef1d1a2c71ab4226cdf65508582be84e932154e3dba74bc78"));
 
-        /*
-        vSeeds.emplace_back("seed1.fortuneblock.xyz");
-        vSeeds.emplace_back("seed2.fortuneblock.xyz");
-        vSeeds.emplace_back("seed3.fortuneblock.xyz");
-        vSeeds.emplace_back("seed4.fortuneblock.xyz");
-        vSeeds.emplace_back("seed5.fortuneblock.xyz");
-        */
-        //add test seed
-        vSeeds.emplace_back("146.190.219.47");
-        vSeeds.emplace_back("146.190.70.91");
+        vSeeds.emplace_back("sanjose.fortuneblock.xyz");
+        vSeeds.emplace_back("dubai.fortuneblock.xyz");
+        vSeeds.emplace_back("saopaulo.fortuneblock.xyz");
+        vSeeds.emplace_back("mumbai.fortuneblock.xyz");
+        vSeeds.emplace_back("tokyo.fortuneblock.xyz");
 
         // Fortuneblock addresses start with 'F'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 36);
