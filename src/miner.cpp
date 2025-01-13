@@ -1644,8 +1644,14 @@ std::unique_ptr <CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript &s
         CValidationState state;
         if (!CalcCbTxMerkleRootMNList(*pblock, pindexPrev, cbTx.merkleRootMNList, state,
                                       ::ChainstateActive().CoinsTip())) {
-            throw std::runtime_error(
+            if (state.IsInvalid() && state.GetRejectCode() == REJECT_INVALID && state.GetRejectReason() == "bad-protx-hash") {
+                LogPrintf("%s: Skipping invalid Masternode transaction due to bad-protx-hash\n", __func__);
+
+                cbTx.merkleRootMNList.SetNull(); //  Clean MerkleRootMNList
+            } else {
+                throw std::runtime_error(
                     strprintf("%s: CalcCbTxMerkleRootMNList failed: %s", __func__, FormatStateMessage(state)));
+            }
         }
         if (fDIP0008Active_context) {
             if (!CalcCbTxMerkleRootQuorums(*pblock, pindexPrev, cbTx.merkleRootQuorums, state)) {
