@@ -284,7 +284,7 @@ public:
         fBIP9CheckSmartnodesUpgraded = true;
 
         checkpointData = {
-                {
+                {{5000, uint256S("0x4a36933667dfe27d8dde81566d195a02269d8198f684e2c3c0121a526fa3b804")}
 
                 }
         };
