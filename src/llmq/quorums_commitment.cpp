@@ -179,8 +179,12 @@ namespace llmq {
 
         if (qcTx.commitment.IsNull()) {
             if (!qcTx.commitment.VerifyNull()) {
-                return state.DoS(100, false, REJECT_INVALID, "bad-qc-invalid-null");
-                            }
+                if ((pindexPrev->nHeight > 10868) && (pindexPrev->nHeight < 11170)) { //Tx cannot be verified due to the spork mechanism. To avoid such issues in the future.
+                    return true;
+                } else {
+                    return state.DoS(100, false, REJECT_INVALID, "bad-qc-invalid-null");
+                }
+            }
             return true;
         }
 

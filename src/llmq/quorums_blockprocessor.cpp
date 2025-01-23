@@ -207,7 +207,11 @@ namespace llmq {
 
         if (qc.IsNull()) {
             if (!qc.VerifyNull()) {
-                return state.DoS(100, false, REJECT_INVALID, "bad-qc-invalid-null");              
+                if ((nHeight > 10868) && (nHeight < 11170)) { //Tx cannot be verified due to the spork mechanism. To avoid such issues in the future.
+                    return true;
+                } else {
+                    return state.DoS(100, false, REJECT_INVALID, "bad-qc-invalid-null");
+                }             
             }
             return true;
         }
