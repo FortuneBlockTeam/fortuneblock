@@ -1159,7 +1159,7 @@ UniValue createConfigFile(std::string blsPrivateKey, std::string ip, std::string
     std::string password = generateRandomString(20, true);
     configFile << "rpcuser=" << username << std::endl;
     configFile << "rpcpassword=" << password << std::endl;
-    configFile << "rpcport=8484\n";
+    configFile << "rpcport=27776\n";
     configFile << "rpcallowip=127.0.0.1\n";
     configFile << "server=1\n";
     configFile << "daemon=1\n";
