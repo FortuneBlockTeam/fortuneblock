@@ -1,5 +1,6 @@
 // Copyright (c) 2017-2019 The Dash Core developers
 // Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2024-2026 The FortuneBlock developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -75,6 +76,18 @@ bool CheckCbTxMerkleRoots(const CBlock &block, const CBlockIndex *pindex, CValid
              nTimePayload * 0.000001);
 
     if (pindex) {
+        // ===== Temporarily skipping Merkle Root verification. =====
+        const int MN_CLEANUP_HEIGHT = 266800;    //consensus.nSmartnodeCleanupHeight
+        const int GRACE_PERIOD = 20;
+
+        int nHeight = pindex->nHeight;
+
+        if (nHeight >= MN_CLEANUP_HEIGHT && nHeight <= MN_CLEANUP_HEIGHT + GRACE_PERIOD) {
+            LogPrintf("CheckCbTxMerkleRoots -- Skipping merkle root validation at height %d (cleanup transition period)\n", nHeight);
+            return true;
+        }
+        // ==========
+
         static int64_t nTimeMerkleMNL = 0;
         static int64_t nTimeMerkleQuorum = 0;
 

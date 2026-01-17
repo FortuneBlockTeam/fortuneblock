@@ -1,5 +1,6 @@
 // Copyright (c) 2018-2019 The Dash Core developers
 // Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2026 The Fortuneblock developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,6 +18,7 @@
 #include <spork.h>
 #include <assets/assets.h>
 #include <assets/assetstype.h>
+#include <smartnode/smartnode-check.h>
 
 template<typename ProTx>
 static bool CheckService(const ProTx &proTx, CValidationState &state) {
@@ -434,6 +436,14 @@ bool CheckProRegTx(const CTransaction &tx, const CBlockIndex *pindexPrev, CValid
     if (ptx.addr != CService() && !CheckService(ptx, state)) {
         // pass the state returned by the function above
         return false;
+    }
+    if (check_sigs && pindexPrev == nullptr) {
+        if (ptx.addr != CService() && !CheckSmartnodeInboundReachable(ptx.addr, 1000)) {
+            return state.Invalid(
+                false,
+                REJECT_NONSTANDARD,
+                "smartnode-service-unreachable");
+        }
     }
 
     if (ptx.nOperatorReward > 10000) {

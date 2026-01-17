@@ -1,6 +1,6 @@
 // Copyright (c) 2012-2014 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2024 The FortuneBlock developers
+// Copyright (c) 2024-2026 The FortuneBlock developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,7 +12,7 @@
  */
 
 
-static const int PROTOCOL_VERSION = 70224;
+static const int PROTOCOL_VERSION = 70225;
 
 //! initial proto version, to be increased after version/verack negotiation
 static const int INIT_PROTO_VERSION = 209;

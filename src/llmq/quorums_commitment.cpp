@@ -177,6 +177,24 @@ namespace llmq {
             return state.DoS(100, false, REJECT_INVALID, "bad-qc-type");
         }
 
+        //after cleanupHeight
+        //set a graceperiod
+        auto mnList = deterministicMNManager->GetListForBlock(pindexPrev);
+        int mnCount = mnList.GetAllMNsCount();
+        int nHeight = pindexPrev->nHeight + 1;
+        const int MN_CLEANUP_HEIGHT = Params().GetConsensus().nSmartnodeCleanupHeight;
+        const int MAX_GRACE_BLOCKS = 200;
+        bool inGracePeriod = (nHeight >= MN_CLEANUP_HEIGHT &&
+                              nHeight <= MN_CLEANUP_HEIGHT + MAX_GRACE_BLOCKS);
+
+        // 
+        if (inGracePeriod) {
+            LogPrintf("CheckLLMQCommitment -- Allowing commitment in grace period (%d Smartnodes) at height %d\n",
+                mnCount, nHeight);
+            return true;
+        }
+
+
         if (qcTx.commitment.IsNull()) {
             if (!qcTx.commitment.VerifyNull()) {
                 if ((pindexPrev->nHeight > 10868) && (pindexPrev->nHeight < 11170)) { //Tx cannot be verified due to the spork mechanism. To avoid such issues in the future.

@@ -1,5 +1,6 @@
 // Copyright (c) 2014-2021 The Dash Core developers
 // Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2024-2026 The FortuneBlock developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -234,6 +235,19 @@ bool IsBlockPayeeValid(const CTransaction &txNew, int nBlockHeight, CAmount bloc
 void FillBlockPayments(CMutableTransaction &txNew, int nBlockHeight, CAmount blockReward,
                        std::vector <CTxOut> &voutSmartnodePaymentsRet, std::vector <CTxOut> &voutSuperblockPaymentsRet,
                        CAmount specialTxFees) {
+    // ==========
+    const int MN_CLEANUP_HEIGHT = 266800; // consensus.nSmartnodeCleanupHeight
+    const int GRACE_PERIOD = 50;
+
+    bool skipMNPayment = false;
+    if (nBlockHeight >= MN_CLEANUP_HEIGHT && nBlockHeight <= MN_CLEANUP_HEIGHT + GRACE_PERIOD) {
+        auto mnList = deterministicMNManager->GetListAtChainTip();
+        if (mnList.GetAllMNsCount() < 10) {
+            LogPrintf("FillBlockPayments -- No smartnode payment at height %d\n", nBlockHeight);
+            skipMNPayment = true;
+        }
+    }
+
     // only create superblocks if spork is enabled AND if superblock is actually triggered
     // (height should be validated inside)
     if (AreSuperblocksEnabled() && CSuperblockManager::IsSuperblockTriggered(nBlockHeight)) {
@@ -241,8 +255,10 @@ void FillBlockPayments(CMutableTransaction &txNew, int nBlockHeight, CAmount blo
         CSuperblockManager::GetSuperblockPayments(nBlockHeight, voutSuperblockPaymentsRet);
     }
 
-    if (!CSmartnodePayments::GetSmartnodeTxOuts(nBlockHeight, blockReward, voutSmartnodePaymentsRet, specialTxFees)) {
-        LogPrint(BCLog::MNPAYMENTS, "%s -- no smartnode to pay (MN list probably empty)\n", __func__);
+    if (!skipMNPayment) {
+        if (!CSmartnodePayments::GetSmartnodeTxOuts(nBlockHeight, blockReward, voutSmartnodePaymentsRet, specialTxFees)) {
+            LogPrint(BCLog::MNPAYMENTS, "%s -- no smartnode to pay (smartnode list probably empty or below 10)\n", __func__);
+        }
     }
 
     txNew.vout.insert(txNew.vout.end(), voutSmartnodePaymentsRet.begin(), voutSmartnodePaymentsRet.end());
@@ -326,6 +342,19 @@ bool CSmartnodePayments::GetBlockTxOuts(int nBlockHeight, CAmount blockReward,
 
 bool CSmartnodePayments::IsTransactionValid(const CTransaction &txNew, int nBlockHeight, CAmount blockReward,
                                             CAmount specialTxFee) {
+    // ===== Added: Allowing payments without smartnode =====
+    const int MN_CLEANUP_HEIGHT = 266800; // consensus.nSmartnodeCleanupHeight
+    const int GRACE_PERIOD = 50; 
+
+    if (nBlockHeight >= MN_CLEANUP_HEIGHT && nBlockHeight <= MN_CLEANUP_HEIGHT + GRACE_PERIOD) {
+        auto mnList = deterministicMNManager->GetListAtChainTip();
+        if (mnList.GetAllMNsCount() < 10) {
+            LogPrintf("CSmartnodePayments::%s -- No smartnode payment required \n", __func__);
+            return true; 
+        }
+    }
+    // =====Finish=====
+
     if (!deterministicMNManager->IsDIP3Enforced(nBlockHeight)) {
         // can't verify historical blocks here
         return true;

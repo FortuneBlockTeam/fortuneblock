@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
 // Copyright (c) 2020-2023 The Raptoreum developers
-// Copyright (c) 2024 The FortuneBlock developers
+// Copyright (c) 2024-2026 The FortuneBlock developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -189,6 +189,7 @@ public:
         consensus.DGWBlocksAvg = 60;
         consensus.smartnodePaymentFixedBlock = 6800;
         consensus.nFutureForkBlock = 420420;
+        consensus.nSmartnodeCleanupHeight = 266800;
 
 
         // The best chain should have at least this much work.
@@ -247,10 +248,12 @@ public:
         std::vector <FortuneRewardStructure> rewardStructures = {{INT_MAX, 5}};// 5% lucky reward forever
         consensus.nFortunePayment = FortunePayment(rewardStructures, 0);
         consensus.nCollaterals = SmartnodeCollaterals(
-                {{INT_MAX, 60000 * COIN}
+                {{266800, 60000 * COIN},
+                 {INT_MAX, 300000 * COIN}
                 },
                 {{5000,    0},
-                 {INT_MAX, 20}}
+                 {266800,  20},
+                 {INT_MAX, 50}}
         );
         //FutureRewardShare defaultShare(0.8,0.2,0.0);
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8, 0.2, 0.0);
@@ -285,7 +288,8 @@ public:
 
         checkpointData = {
                 {{5000, uint256S("0x4a36933667dfe27d8dde81566d195a02269d8198f684e2c3c0121a526fa3b804")},
-                 {10000, uint256S("0x0ea2240245eaa4aab469f652ae8acf40f8176adbb635432b6a15a8d8acdefcdc")}
+                 {10000, uint256S("0x0ea2240245eaa4aab469f652ae8acf40f8176adbb635432b6a15a8d8acdefcdc")},
+                 {260000, uint256S("0xab5166f8a51ddda3322b25c0f16512254a799dd4a361063def17b8b9ac959d09")}
 
                 }
         };

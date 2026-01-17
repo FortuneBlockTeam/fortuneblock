@@ -224,6 +224,7 @@ BITCOIN_CORE_H = \
   smartnode/smartnode-sync.h \
   smartnode/smartnode-utils.h \
   smartnode/smartnode-collaterals.h \
+  smartnode/smartnode-check.h \
   mapport.h \
   memusage.h \
   merkleblock.h \
@@ -405,6 +406,7 @@ libfortuneblock_server_a_SOURCES = \
   smartnode/smartnode-payments.cpp \
   smartnode/smartnode-sync.cpp \
   smartnode/smartnode-utils.cpp \
+  smartnode/smartnode-check.cpp \
   messagesigner.cpp \
   miner.cpp \
   net.cpp \

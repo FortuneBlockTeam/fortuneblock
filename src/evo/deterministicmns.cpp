@@ -1,5 +1,6 @@
 // Copyright (c) 2018-2019 The Dash Core developers
 // Copyright (c) 2020-2023 The Raptoreum developers
+// Copyright (c) 2024-2026 The FortuneBlock developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -595,6 +596,59 @@ bool CDeterministicMNManager::ProcessBlock(const CBlock &block, const CBlockInde
     CDeterministicMNListDiff diff;
 
     int nHeight = pindex->nHeight;
+
+    // ===== Added: MN cleanup hard fork =====
+    if (nHeight == consensusParams.nSmartnodeCleanupHeight) {
+        LogPrintf("CDeterministicMNManager::%s -- Smartnode cleanup fork at height %d (fJustCheck=%d)\n",
+            __func__, nHeight, fJustCheck);
+
+        try {
+            LOCK(cs);
+
+            if (!fJustCheck) {
+                // Get the old list (for notifications)
+                oldList = GetListForBlock(pindex->pprev);
+                int oldCount = oldList.GetAllMNsCount();
+
+                // Create a new empty list
+                newList = CDeterministicMNList();
+                newList.SetHeight(nHeight);
+                newList.SetBlockHash(block.GetHash());
+
+                // Calculate the diff (from the old list to an empty list)
+                diff = oldList.BuildDiff(newList);
+
+                // Write the diff
+                evoDb.Write(std::make_pair(DB_LIST_DIFF, newList.GetBlockHash()), diff);
+
+                // Write snapshot (an empty list after cleanup).
+                evoDb.Write(std::make_pair(DB_LIST_SNAPSHOT, newList.GetBlockHash()), newList);
+                mnListsCache.clear(); // Clear the old cache
+                mnListsCache.emplace(newList.GetBlockHash(), newList);
+
+                diff.nHeight = pindex->nHeight;
+                mnListDiffsCache.clear(); // Clear the old diff cache.
+                mnListDiffsCache.emplace(pindex->GetBlockHash(), diff);
+
+                LogPrintf("CDeterministicMNManager::%s -- Cleanup complete: removed %d masternodes, new count=%d\n",
+                    __func__, oldCount, newList.GetAllMNsCount());
+            }
+        } catch (const std::exception& e) {
+            LogPrintf("CDeterministicMNManager::%s -- cleanup fork error: %s\n", __func__, e.what());
+            return _state.DoS(100, false, REJECT_INVALID, "failed-dmn-cleanup");
+        }
+
+        // Send notification (executed outside the lock)
+        if (!fJustCheck && diff.HasChanges()) {
+            GetMainSignals().NotifySmartnodeListChanged(false, oldList, diff, connman);
+            uiInterface.NotifySmartnodeListChanged(newList);
+        }
+
+        if (nHeight > to_cleanup) to_cleanup = nHeight;
+        return true; 
+    }
+    // ===== Hard fork completed =====
+
 
     try {
         LOCK(cs);
