@@ -18,19 +18,19 @@ static const int PROTOCOL_VERSION = 70225;
 static const int INIT_PROTO_VERSION = 209;
 
 //! disconnect from peers older than this proto version
-static const int OLD_MIN_PEER_PROTO_VERSION = 70224;
+static const int OLD_MIN_PEER_PROTO_VERSION = 70225;
 
-static const int MIN_PEER_PROTO_VERSION = 70224;
+static const int MIN_PEER_PROTO_VERSION = 70225;
 
 //! minimum proto version of smartnode to accept in DKGs
-static const int OLD_MIN_SMARTNODE_PROTO_VERSION = 70224;
-static const int MIN_SMARTNODE_PROTO_VERSION = 70224;
+static const int OLD_MIN_SMARTNODE_PROTO_VERSION = 70225;
+static const int MIN_SMARTNODE_PROTO_VERSION = 70225;
 
 //! minimum proto version for governance sync and messages
-static const int MIN_GOVERNANCE_PEER_PROTO_VERSION = 70224;
+static const int MIN_GOVERNANCE_PEER_PROTO_VERSION = 70225;
 
 //! minimum proto version to broadcast governance messages from banned smartnodes
-static const int GOVERNANCE_POSE_BANNED_VOTES_VERSION = 70224;
+static const int GOVERNANCE_POSE_BANNED_VOTES_VERSION = 70225;
 
 //! nTime field added to CAddress, starting with this version;
 //! if possible, avoid requesting addresses nodes older than this
